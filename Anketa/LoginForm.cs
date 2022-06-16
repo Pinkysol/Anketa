@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Anketa
 {
     
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
         const string Password = "12345";
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
             button1.Enabled = false;
@@ -26,7 +27,7 @@ namespace Anketa
         {
             if (radioButton1.Checked)
             {
-                Form2 newForm = new Form2();
+                StudentForm newForm = new StudentForm();
                 newForm.Show();
             }
             if (radioButton2.Checked)

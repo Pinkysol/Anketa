@@ -1,7 +1,7 @@
 ﻿
 namespace Anketa
 {
-    partial class Form2
+    partial class StudentForm
     {
         /// <summary>
         /// Required designer variable.
