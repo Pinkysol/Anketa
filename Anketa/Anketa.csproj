@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{55C0E926-AEA3-465F-BC7C-4953CCE9CE98}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Anketa</RootNamespace>
     <AssemblyName>Anketa</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>

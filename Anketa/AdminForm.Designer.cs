@@ -29,12 +29,12 @@ namespace Anketa
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
@@ -51,6 +51,8 @@ namespace Anketa
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -63,20 +65,7 @@ namespace Anketa
             this.button5 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Teacher = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Question1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Question2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Question3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Question4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Question5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Question6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Question7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Question8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Question9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button4 = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -248,6 +237,21 @@ namespace Anketa
             this.dataGridView1.Size = new System.Drawing.Size(455, 391);
             this.dataGridView1.TabIndex = 0;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "Преподаватель";
+            this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "Кафедра";
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.chart1);
@@ -261,16 +265,16 @@ namespace Anketa
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea5.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chart1.Legends.Add(legend5);
             this.chart1.Location = new System.Drawing.Point(6, 6);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chart1.Series.Add(series5);
             this.chart1.Size = new System.Drawing.Size(756, 388);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -310,16 +314,16 @@ namespace Anketa
             // 
             // chart2
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart2.Legends.Add(legend4);
+            chartArea6.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chart2.Legends.Add(legend6);
             this.chart2.Location = new System.Drawing.Point(6, 6);
             this.chart2.Name = "chart2";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart2.Series.Add(series4);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chart2.Series.Add(series6);
             this.chart2.Size = new System.Drawing.Size(736, 350);
             this.chart2.TabIndex = 0;
             this.chart2.Text = "chart2";
@@ -376,77 +380,11 @@ namespace Anketa
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Teacher,
-            this.Question1,
-            this.Question2,
-            this.Question3,
-            this.Question4,
-            this.Question5,
-            this.Question6,
-            this.Question7,
-            this.Question8,
-            this.Question9,
-            this.Comment});
             this.dataGridView2.Location = new System.Drawing.Point(6, 62);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(756, 303);
             this.dataGridView2.TabIndex = 0;
-            // 
-            // Teacher
-            // 
-            this.Teacher.HeaderText = "ФИО преподавателя";
-            this.Teacher.Name = "Teacher";
-            // 
-            // Question1
-            // 
-            this.Question1.HeaderText = "Владеет культурной речью";
-            this.Question1.Name = "Question1";
-            // 
-            // Question2
-            // 
-            this.Question2.HeaderText = "Уважителен к студентам";
-            this.Question2.Name = "Question2";
-            // 
-            // Question3
-            // 
-            this.Question3.HeaderText = "Доступно излогает материал";
-            this.Question3.Name = "Question3";
-            // 
-            // Question4
-            // 
-            this.Question4.HeaderText = "Соблюдает логическую последовательность в изложении";
-            this.Question4.Name = "Question4";
-            // 
-            // Question5
-            // 
-            this.Question5.HeaderText = "Теоретический материал подкреплён примерами";
-            this.Question5.Name = "Question5";
-            // 
-            // Question6
-            // 
-            this.Question6.HeaderText = "Использует новый подход в обучении";
-            this.Question6.Name = "Question6";
-            // 
-            // Question7
-            // 
-            this.Question7.HeaderText = "Проводит индивидуальную работу со студентами";
-            this.Question7.Name = "Question7";
-            // 
-            // Question8
-            // 
-            this.Question8.HeaderText = "Поддерживает студентов";
-            this.Question8.Name = "Question8";
-            // 
-            // Question9
-            // 
-            this.Question9.HeaderText = "Объективная оценка студентов";
-            this.Question9.Name = "Question9";
-            // 
-            // Comment
-            // 
-            this.Comment.HeaderText = "Комментарий";
-            this.Comment.Name = "Comment";
             // 
             // button4
             // 
@@ -456,23 +394,9 @@ namespace Anketa
             this.button4.TabIndex = 1;
             this.button4.Text = "Обновить";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "Преподаватель";
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Кафедра";
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Form3
+            // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -480,7 +404,7 @@ namespace Anketa
             this.Controls.Add(this.button4);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Form3";
+            this.Name = "AdminForm";
             this.Text = "Анкета: Администратор";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -530,17 +454,6 @@ namespace Anketa
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Teacher;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Question1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Question2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Question3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Question4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Question5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Question6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Question7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Question8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Question9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column2;
     }

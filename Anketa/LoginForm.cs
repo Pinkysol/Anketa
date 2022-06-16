@@ -34,7 +34,8 @@ namespace Anketa
             {
                 if (textBox1.Text == Password)
                 {
-                    // Запустить форму администратора
+                    AdminForm newForm = new AdminForm();
+                    newForm.Show();
                 }
                 else
                 {
