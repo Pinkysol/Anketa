@@ -26,7 +26,18 @@ namespace Anketa
             {
                 this.comboBox2.Items.Add(departmentNames[i]);
             }
+            UpdateDataGridView1();
             UpdateDataGridView2();
+
+        }
+        private void UpdateDataGridView1()
+        {
+            MySqlConnection connection = MySql.OpenConnection();
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT `ФИО учителя`,`Факультет` FROM departments , teacher WHERE departments.id = teacher.Department_id;", connection);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            dataGridView1.DataSource = table;
+            MySql.CloseConnection(connection);
         }
         private void UpdateDataGridView2()
         {
@@ -40,6 +51,7 @@ namespace Anketa
 
         private void button4_Click(object sender, EventArgs e)
         {
+            UpdateDataGridView1();
             UpdateDataGridView2();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)

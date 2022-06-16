@@ -31,7 +31,7 @@ namespace Anketa
         {
             MySqlConnection connection = MySql.OpenConnection();
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT departmentName From departments";
+            command.CommandText = "SELECT Факультет From departments";
             MySqlDataAdapter adapter = new MySqlDataAdapter(command);
             DataTable table = new DataTable();
             adapter.Fill(table);
