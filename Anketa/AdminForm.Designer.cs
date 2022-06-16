@@ -51,8 +51,6 @@ namespace Anketa
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -62,10 +60,10 @@ namespace Anketa
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -229,28 +227,10 @@ namespace Anketa
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
             this.dataGridView1.Location = new System.Drawing.Point(307, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(455, 391);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "Преподаватель";
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Кафедра";
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // tabPage2
             // 
@@ -350,8 +330,8 @@ namespace Anketa
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.button5);
-            this.tabPage4.Controls.Add(this.textBox3);
+            this.tabPage4.Controls.Add(this.label7);
+            this.tabPage4.Controls.Add(this.searchTextBox);
             this.tabPage4.Controls.Add(this.dataGridView2);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -361,29 +341,20 @@ namespace Anketa
             this.tabPage4.Text = "Результаты анкетирования";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // searchTextBox
             // 
-            this.button5.Location = new System.Drawing.Point(7, 33);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Поиск";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(7, 7);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 1;
+            this.searchTextBox.Location = new System.Drawing.Point(96, 6);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(100, 20);
+            this.searchTextBox.TabIndex = 1;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 62);
+            this.dataGridView2.Location = new System.Drawing.Point(6, 32);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(756, 303);
+            this.dataGridView2.Size = new System.Drawing.Size(756, 333);
             this.dataGridView2.TabIndex = 0;
             // 
             // button4
@@ -395,6 +366,15 @@ namespace Anketa
             this.button4.Text = "Обновить";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Поиск по ФИО";
             // 
             // AdminForm
             // 
@@ -452,9 +432,7 @@ namespace Anketa
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Column2;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Label label7;
     }
 }
