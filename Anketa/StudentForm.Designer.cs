@@ -30,7 +30,7 @@ namespace Anketa
         private void InitializeComponent()
         {
             this.RegisterButton = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.teacherNameСomboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -73,13 +73,13 @@ namespace Anketa
             this.RegisterButton.UseVisualStyleBackColor = true;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
-            // comboBox1
+            // teacherNameСomboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(343, 11);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 7;
+            this.teacherNameСomboBox.FormattingEnabled = true;
+            this.teacherNameСomboBox.Location = new System.Drawing.Point(343, 11);
+            this.teacherNameСomboBox.Name = "teacherNameСomboBox";
+            this.teacherNameСomboBox.Size = new System.Drawing.Size(121, 21);
+            this.teacherNameСomboBox.TabIndex = 7;
             // 
             // label1
             // 
@@ -411,7 +411,7 @@ namespace Anketa
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.teacherNameСomboBox);
             this.Controls.Add(this.RegisterButton);
             this.Name = "StudentForm";
             this.Text = "Анкета: Студент";
@@ -431,7 +431,7 @@ namespace Anketa
 
         #endregion
         private System.Windows.Forms.Button RegisterButton;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox teacherNameСomboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

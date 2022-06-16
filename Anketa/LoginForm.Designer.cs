@@ -32,10 +32,10 @@ namespace Anketa
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.studentRadioButton = new System.Windows.Forms.RadioButton();
+            this.teacherRadioButton = new System.Windows.Forms.RadioButton();
+            this.logInButton = new System.Windows.Forms.Button();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -62,47 +62,47 @@ namespace Anketa
             this.label3.TabIndex = 2;
             this.label3.Text = "Пользователь:";
             // 
-            // radioButton1
+            // studentRadioButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(118, 13);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(65, 17);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Студент";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.studentRadioButton.AutoSize = true;
+            this.studentRadioButton.Location = new System.Drawing.Point(118, 13);
+            this.studentRadioButton.Name = "studentRadioButton";
+            this.studentRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.studentRadioButton.TabIndex = 3;
+            this.studentRadioButton.TabStop = true;
+            this.studentRadioButton.Text = "Студент";
+            this.studentRadioButton.UseVisualStyleBackColor = true;
+            this.studentRadioButton.CheckedChanged += new System.EventHandler(this.studentRadioButton_CheckedChanged);
             // 
-            // radioButton2
+            // teacherRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(118, 36);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(104, 17);
-            this.radioButton2.TabIndex = 4;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Преподователь";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.teacherRadioButton.AutoSize = true;
+            this.teacherRadioButton.Location = new System.Drawing.Point(118, 36);
+            this.teacherRadioButton.Name = "teacherRadioButton";
+            this.teacherRadioButton.Size = new System.Drawing.Size(104, 17);
+            this.teacherRadioButton.TabIndex = 4;
+            this.teacherRadioButton.TabStop = true;
+            this.teacherRadioButton.Text = "Преподователь";
+            this.teacherRadioButton.UseVisualStyleBackColor = true;
+            this.teacherRadioButton.CheckedChanged += new System.EventHandler(this.teacherRadioButton_CheckedChanged);
             // 
-            // button1
+            // logInButton
             // 
-            this.button1.Location = new System.Drawing.Point(209, 69);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Войти";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.logInButton.Location = new System.Drawing.Point(209, 69);
+            this.logInButton.Name = "logInButton";
+            this.logInButton.Size = new System.Drawing.Size(75, 23);
+            this.logInButton.TabIndex = 5;
+            this.logInButton.Text = "Войти";
+            this.logInButton.UseVisualStyleBackColor = true;
+            this.logInButton.Click += new System.EventHandler(this.logInButton_Click);
             // 
-            // textBox1
+            // passwordTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 71);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(104, 20);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.passwordTextBox.Location = new System.Drawing.Point(80, 71);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.Size = new System.Drawing.Size(104, 20);
+            this.passwordTextBox.TabIndex = 6;
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.passwordTextBox_TextChanged);
             // 
             // label4
             // 
@@ -113,21 +113,21 @@ namespace Anketa
             this.label4.TabIndex = 7;
             this.label4.Text = "Пароль";
             // 
-            // Form1
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(296, 106);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.passwordTextBox);
+            this.Controls.Add(this.logInButton);
+            this.Controls.Add(this.teacherRadioButton);
+            this.Controls.Add(this.studentRadioButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Form1";
+            this.Name = "LoginForm";
             this.Text = "Анкета: Вход в систему";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -138,10 +138,10 @@ namespace Anketa
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.RadioButton studentRadioButton;
+        private System.Windows.Forms.RadioButton teacherRadioButton;
+        private System.Windows.Forms.Button logInButton;
+        private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Label label4;
     }
 }

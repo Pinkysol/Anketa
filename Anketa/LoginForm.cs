@@ -18,23 +18,23 @@ namespace Anketa
         public LoginForm()
         {
             InitializeComponent();
-            button1.Enabled = false;
+            logInButton.Enabled = false;
             label4.Enabled = false;
-            textBox1.Enabled = false;
+            passwordTextBox.Enabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void logInButton_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
+            if (studentRadioButton.Checked)
             {
                 StudentForm newForm = new StudentForm();
                 newForm.Show();
             }
-            if (radioButton2.Checked)
+            if (teacherRadioButton.Checked)
             {
-                if (textBox1.Text == Password)
+                if (passwordTextBox.Text == Password)
                 {
-                    AdminForm newForm = new AdminForm();
+                    TeacherForm newForm = new TeacherForm();
                     newForm.Show();
                 }
                 else
@@ -51,22 +51,22 @@ namespace Anketa
             }
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void studentRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            button1.Enabled = true;
+            logInButton.Enabled = true;
             label4.Enabled = false;
-            textBox1.Enabled = false;
+            passwordTextBox.Enabled = false;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void passwordTextBox_TextChanged(object sender, EventArgs e)
         {
-            button1.Enabled = true;
+            logInButton.Enabled = true;
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void teacherRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             label4.Enabled = true;
-            textBox1.Enabled = true;
+            passwordTextBox.Enabled = true;
 
         }
     }

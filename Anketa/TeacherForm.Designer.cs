@@ -1,7 +1,7 @@
 ﻿
 namespace Anketa
 {
-    partial class AdminForm
+    partial class TeacherForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,30 +31,30 @@ namespace Anketa
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.changeButton = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.editComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.editTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.searchComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.searchTextBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.TeacherListDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.searchTextBox2 = new System.Windows.Forms.TextBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.TestDataGridView = new System.Windows.Forms.DataGridView();
+            this.updateButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TeacherListDataGridView)).BeginInit();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TestDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -69,20 +69,20 @@ namespace Anketa
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.comboBox2);
+            this.tabPage1.Controls.Add(this.deleteButton);
+            this.tabPage1.Controls.Add(this.changeButton);
+            this.tabPage1.Controls.Add(this.addButton);
+            this.tabPage1.Controls.Add(this.editComboBox);
             this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.editTextBox);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.searchComboBox);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.searchTextBox1);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.TeacherListDataGridView);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -91,40 +91,41 @@ namespace Anketa
             this.tabPage1.Text = "Редактировать список преподавателей";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // deleteButton
             // 
-            this.button3.Location = new System.Drawing.Point(226, 342);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Удалить";
-            this.button3.UseVisualStyleBackColor = true;
+            this.deleteButton.Location = new System.Drawing.Point(226, 342);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton.TabIndex = 13;
+            this.deleteButton.Text = "Удалить";
+            this.deleteButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // changeButton
             // 
-            this.button2.Location = new System.Drawing.Point(118, 342);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Изменить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.changeButton.Location = new System.Drawing.Point(118, 342);
+            this.changeButton.Name = "changeButton";
+            this.changeButton.Size = new System.Drawing.Size(75, 23);
+            this.changeButton.TabIndex = 12;
+            this.changeButton.Text = "Изменить";
+            this.changeButton.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // addButton
             // 
-            this.button1.Location = new System.Drawing.Point(6, 342);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.addButton.Location = new System.Drawing.Point(6, 342);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.TabIndex = 11;
+            this.addButton.Text = "Добавить";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // comboBox2
+            // editComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(4, 289);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(297, 21);
-            this.comboBox2.TabIndex = 10;
+            this.editComboBox.FormattingEnabled = true;
+            this.editComboBox.Location = new System.Drawing.Point(4, 289);
+            this.editComboBox.Name = "editComboBox";
+            this.editComboBox.Size = new System.Drawing.Size(297, 21);
+            this.editComboBox.TabIndex = 10;
             // 
             // label6
             // 
@@ -135,12 +136,12 @@ namespace Anketa
             this.label6.TabIndex = 9;
             this.label6.Text = "Кафедра";
             // 
-            // textBox2
+            // editTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 225);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(295, 20);
-            this.textBox2.TabIndex = 8;
+            this.editTextBox.Location = new System.Drawing.Point(6, 225);
+            this.editTextBox.Name = "editTextBox";
+            this.editTextBox.Size = new System.Drawing.Size(295, 20);
+            this.editTextBox.TabIndex = 8;
             // 
             // label5
             // 
@@ -160,13 +161,14 @@ namespace Anketa
             this.label4.TabIndex = 6;
             this.label4.Text = "Редактировать";
             // 
-            // comboBox1
+            // searchComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 107);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(291, 21);
-            this.comboBox1.TabIndex = 5;
+            this.searchComboBox.FormattingEnabled = true;
+            this.searchComboBox.Location = new System.Drawing.Point(10, 107);
+            this.searchComboBox.Name = "searchComboBox";
+            this.searchComboBox.Size = new System.Drawing.Size(291, 21);
+            this.searchComboBox.TabIndex = 5;
+            this.searchComboBox.SelectedIndexChanged += new System.EventHandler(this.searchComboBox_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -192,7 +194,7 @@ namespace Anketa
             this.searchTextBox1.Name = "searchTextBox1";
             this.searchTextBox1.Size = new System.Drawing.Size(291, 20);
             this.searchTextBox1.TabIndex = 2;
-            this.searchTextBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.searchTextBox1.TextChanged += new System.EventHandler(this.searchTextBox1_TextChanged);
             // 
             // label1
             // 
@@ -203,21 +205,21 @@ namespace Anketa
             this.label1.TabIndex = 1;
             this.label1.Text = "Найти";
             // 
-            // dataGridView1
+            // TeacherListDataGridView
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(307, 6);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(455, 391);
-            this.dataGridView1.TabIndex = 0;
+            this.TeacherListDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.TeacherListDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.TeacherListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TeacherListDataGridView.Location = new System.Drawing.Point(307, 6);
+            this.TeacherListDataGridView.Name = "TeacherListDataGridView";
+            this.TeacherListDataGridView.Size = new System.Drawing.Size(455, 359);
+            this.TeacherListDataGridView.TabIndex = 0;
             // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.label7);
             this.tabPage4.Controls.Add(this.searchTextBox2);
-            this.tabPage4.Controls.Add(this.dataGridView2);
+            this.tabPage4.Controls.Add(this.TestDataGridView);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -241,44 +243,44 @@ namespace Anketa
             this.searchTextBox2.Name = "searchTextBox2";
             this.searchTextBox2.Size = new System.Drawing.Size(100, 20);
             this.searchTextBox2.TabIndex = 1;
-            this.searchTextBox2.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.searchTextBox2.TextChanged += new System.EventHandler(this.searchTextBox2_TextChanged);
             // 
-            // dataGridView2
+            // TestDataGridView
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 32);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(756, 333);
-            this.dataGridView2.TabIndex = 0;
+            this.TestDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TestDataGridView.Location = new System.Drawing.Point(6, 32);
+            this.TestDataGridView.Name = "TestDataGridView";
+            this.TestDataGridView.ReadOnly = true;
+            this.TestDataGridView.Size = new System.Drawing.Size(756, 333);
+            this.TestDataGridView.TabIndex = 0;
             // 
-            // button4
+            // updateButton
             // 
-            this.button4.Location = new System.Drawing.Point(12, 415);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Обновить";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.updateButton.Location = new System.Drawing.Point(12, 415);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(75, 23);
+            this.updateButton.TabIndex = 1;
+            this.updateButton.Text = "Обновить";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
-            // AdminForm
+            // TeacherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.updateButton);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "AdminForm";
-            this.Text = "Анкета: Администратор";
+            this.Name = "TeacherForm";
+            this.Text = "Анкета: Преподаватель";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TeacherListDataGridView)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TestDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -288,22 +290,22 @@ namespace Anketa
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DataGridView TeacherListDataGridView;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button changeButton;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.ComboBox editComboBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox editTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox searchComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox searchTextBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.DataGridView TestDataGridView;
         private System.Windows.Forms.TextBox searchTextBox2;
         private System.Windows.Forms.Label label7;
     }
