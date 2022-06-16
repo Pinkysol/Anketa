@@ -42,14 +42,14 @@ namespace Anketa
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.searchTextBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.searchTextBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -80,7 +80,7 @@ namespace Anketa
             this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.searchTextBox1);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -186,12 +186,13 @@ namespace Anketa
             this.label2.TabIndex = 3;
             this.label2.Text = "По фамилии преподавателя";
             // 
-            // textBox1
+            // searchTextBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(10, 53);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(291, 20);
-            this.textBox1.TabIndex = 2;
+            this.searchTextBox1.Location = new System.Drawing.Point(10, 53);
+            this.searchTextBox1.Name = "searchTextBox1";
+            this.searchTextBox1.Size = new System.Drawing.Size(291, 20);
+            this.searchTextBox1.TabIndex = 2;
+            this.searchTextBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -215,7 +216,7 @@ namespace Anketa
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.label7);
-            this.tabPage4.Controls.Add(this.searchTextBox);
+            this.tabPage4.Controls.Add(this.searchTextBox2);
             this.tabPage4.Controls.Add(this.dataGridView2);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -225,13 +226,22 @@ namespace Anketa
             this.tabPage4.Text = "Результаты анкетирования";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // searchTextBox
+            // label7
             // 
-            this.searchTextBox.Location = new System.Drawing.Point(96, 6);
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(100, 20);
-            this.searchTextBox.TabIndex = 1;
-            this.searchTextBox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Поиск по ФИО";
+            // 
+            // searchTextBox2
+            // 
+            this.searchTextBox2.Location = new System.Drawing.Point(96, 6);
+            this.searchTextBox2.Name = "searchTextBox2";
+            this.searchTextBox2.Size = new System.Drawing.Size(100, 20);
+            this.searchTextBox2.TabIndex = 1;
+            this.searchTextBox2.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // dataGridView2
             // 
@@ -251,15 +261,6 @@ namespace Anketa
             this.button4.Text = "Обновить";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Поиск по ФИО";
             // 
             // AdminForm
             // 
@@ -299,11 +300,11 @@ namespace Anketa
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox searchTextBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.TextBox searchTextBox2;
         private System.Windows.Forms.Label label7;
     }
 }
