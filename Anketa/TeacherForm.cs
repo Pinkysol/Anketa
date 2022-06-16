@@ -28,12 +28,12 @@ namespace Anketa
                 this.editComboBox.Items.Add(departmentNames[i]);
             }
 
-            UpdateDataGridView1();
+            UpdateTeacherListDataGridView();
 
-            UpdateDataGridView2();
+            UpdateTestDataGridView();
         }
 
-        private void UpdateDataGridView1()
+        private void UpdateTeacherListDataGridView()
         {
             MySqlConnection connection = MySql.OpenConnection();
 
@@ -52,7 +52,7 @@ namespace Anketa
             MySql.CloseConnection(connection);
         }
 
-        private void UpdateDataGridView2()
+        private void UpdateTestDataGridView()
         {
             MySqlConnection connection = MySql.OpenConnection();
 
@@ -79,17 +79,17 @@ namespace Anketa
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            UpdateDataGridView1();
-            UpdateDataGridView2();
+            UpdateTeacherListDataGridView();
+            UpdateTestDataGridView();
         }
         private void searchTextBox1_TextChanged(object sender, EventArgs e)
         {
-            UpdateDataGridView1();
+            UpdateTeacherListDataGridView();
         }
 
         private void searchTextBox2_TextChanged(object sender, EventArgs e)
         {
-            UpdateDataGridView2();
+            UpdateTestDataGridView();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -124,7 +124,7 @@ namespace Anketa
 
         private void searchComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateDataGridView1();
+            UpdateTeacherListDataGridView();
         }
     }
 }
