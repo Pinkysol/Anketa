@@ -11,7 +11,9 @@ namespace Anketa
     {
         public static MySqlConnection OpenConnection()
         {
-            MySqlConnection connection = new MySqlConnection("server=localhost;port=8889;username=root;password=root;database=anketa");
+            MySqlConnection connection = new MySqlConnection
+                ("server=localhost;port=8889;username=root;" +
+                "password=root;database=anketa");
             if (connection.State == System.Data.ConnectionState.Closed)
             {
                 connection.Open();

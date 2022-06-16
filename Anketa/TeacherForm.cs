@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -95,8 +89,11 @@ namespace Anketa
         private void addButton_Click(object sender, EventArgs e)
         {
             MySqlConnection connection = MySql.OpenConnection();
-            MySqlCommand addCommand = new MySqlCommand("INSERT INTO `teacher` (`ФИО учителя`,`Department_id`) VALUES (@teacherName, @departmentId)", connection);
-            MySqlCommand command = new MySqlCommand("SELECT id FROM departments WHERE `Кафедра` LIKE '%" + editComboBox.Text + "%'", connection);
+            MySqlCommand addCommand = new MySqlCommand("INSERT INTO `teacher`" +
+                " (`ФИО учителя`,`Department_id`) VALUES (@teacherName, " +
+                "@departmentId)", connection);
+            MySqlCommand command = new MySqlCommand("SELECT id FROM departments" +
+                " WHERE `Кафедра` LIKE '%" + editComboBox.Text + "%'", connection);
             MySqlDataReader reader = command.ExecuteReader();
 
             int departmentId = 1;
@@ -107,8 +104,10 @@ namespace Anketa
 
             reader.Close();
 
-            addCommand.Parameters.Add("@teacherName", MySqlDbType.VarChar).Value = editTextBox.Text;
-            addCommand.Parameters.Add("@departmentId", MySqlDbType.Int32).Value = departmentId;
+            addCommand.Parameters.Add("@teacherName", MySqlDbType.VarChar).Value
+                = editTextBox.Text;
+            addCommand.Parameters.Add("@departmentId", MySqlDbType.Int32).Value
+                = departmentId;
 
             if (addCommand.ExecuteNonQuery() == 1)
             {
