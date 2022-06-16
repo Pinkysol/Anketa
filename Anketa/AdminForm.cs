@@ -17,7 +17,7 @@ namespace Anketa
         {
             InitializeComponent();
 
-            string[] departmentNames = MySql.getDepartmentNames();
+            string[] departmentNames = MySql.GetDepartmentNames();
             for (int i = 0; i < departmentNames.Length; i++)
             {
                 this.comboBox1.Items.Add(departmentNames[i]);

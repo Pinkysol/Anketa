@@ -9,9 +9,9 @@ namespace Anketa
 {
     class MySql
     {
-        public static MySqlConnection openConnection()
+        public static MySqlConnection OpenConnection()
         {
-            MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=anketa");
+            MySqlConnection connection = new MySqlConnection("server=localhost;port=8889;username=root;password=root;database=anketa");
             if (connection.State == System.Data.ConnectionState.Closed)
             {
                 connection.Open();
@@ -19,7 +19,7 @@ namespace Anketa
             return connection;
         }
 
-        public static void closeConnection(MySqlConnection connection)
+        public static void CloseConnection(MySqlConnection connection)
         {
             if (connection.State == System.Data.ConnectionState.Open)
             {
@@ -27,9 +27,9 @@ namespace Anketa
             }
         }
 
-        public static string[] getDepartmentNames()
+        public static string[] GetDepartmentNames()
         {
-            MySqlConnection connection = MySql.openConnection();
+            MySqlConnection connection = MySql.OpenConnection();
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT departmentName From departments";
             MySqlDataAdapter adapter = new MySqlDataAdapter(command);
@@ -37,18 +37,38 @@ namespace Anketa
             adapter.Fill(table);
             MySqlDataReader reader = command.ExecuteReader();
             string[] row = new string[table.Rows.Count];
-            Console.Write("\t{0}", table.Rows.Count);
             int i = 0;
             while (reader.Read())
             {
-                Console.Write("\t{0}", i);
-                Console.WriteLine("\t{0}", reader.GetString(0));
                 row[i] = reader.GetString(0);
                 i++;
             }
             reader.Close();
-            MySql.closeConnection(connection);
+            MySql.CloseConnection(connection);
             return row;
         }
+
+        public static string[] GetTeacherNames()
+        {
+            MySqlConnection connection = MySql.OpenConnection();
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT TeacherInitials From teacher";
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            MySqlDataReader reader = command.ExecuteReader();
+            string[] data = new string[table.Rows.Count];
+            int i = 0;
+            while (reader.Read())
+            {
+                data[i] = reader.GetString(0);
+                i++;
+            }
+            reader.Close();
+            MySql.CloseConnection(connection);
+            return data;
+        }
+
+
     }
 }
