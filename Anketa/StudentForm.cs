@@ -29,8 +29,8 @@ namespace Anketa
                 "студентов`,`Комментарий`) VALUES (@TeacherId, @1Question, @2Question," +
                 " @3Question, @4Question, @5Question, @6Question, @7Question, " +
                 "@8Question, @9Question, @Comment)", connection);
-            MySqlCommand command = new MySqlCommand("SELECT `id` FROM teacher WHERE" +
-                " `ФИО учителя` LIKE '%" + teacherNameСomboBox.Text + "%'", connection);
+            MySqlCommand command = new MySqlCommand($"SELECT `id` FROM teacher WHERE" +
+                $" `ФИО учителя` LIKE '{teacherNameСomboBox.Text}'", connection);
             MySqlDataReader reader = command.ExecuteReader();
 
             int teacherId = 1;

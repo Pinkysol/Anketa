@@ -49,18 +49,25 @@ namespace Anketa
             this.label7 = new System.Windows.Forms.Label();
             this.searchTextBox2 = new System.Windows.Forms.TextBox();
             this.TestDataGridView = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.searchTextBox3 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.statisticsDataGridView = new System.Windows.Forms.DataGridView();
             this.updateButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TeacherListDataGridView)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TestDataGridView)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.statisticsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -99,6 +106,7 @@ namespace Anketa
             this.deleteButton.TabIndex = 13;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // changeButton
             // 
@@ -108,6 +116,7 @@ namespace Anketa
             this.changeButton.TabIndex = 12;
             this.changeButton.Text = "Изменить";
             this.changeButton.UseVisualStyleBackColor = true;
+            this.changeButton.Click += new System.EventHandler(this.changeButton_Click);
             // 
             // addButton
             // 
@@ -214,6 +223,7 @@ namespace Anketa
             this.TeacherListDataGridView.Name = "TeacherListDataGridView";
             this.TeacherListDataGridView.Size = new System.Drawing.Size(455, 359);
             this.TeacherListDataGridView.TabIndex = 0;
+            this.TeacherListDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TeacherListDataGridView_CellClick);
             // 
             // tabPage4
             // 
@@ -254,6 +264,45 @@ namespace Anketa
             this.TestDataGridView.Size = new System.Drawing.Size(756, 333);
             this.TestDataGridView.TabIndex = 0;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.searchTextBox3);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.statisticsDataGridView);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(768, 371);
+            this.tabPage2.TabIndex = 4;
+            this.tabPage2.Text = "Статистика преподавателей";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // searchTextBox3
+            // 
+            this.searchTextBox3.Location = new System.Drawing.Point(96, 6);
+            this.searchTextBox3.Name = "searchTextBox3";
+            this.searchTextBox3.Size = new System.Drawing.Size(100, 20);
+            this.searchTextBox3.TabIndex = 2;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Поиск по ФИО";
+            // 
+            // statisticsDataGridView
+            // 
+            this.statisticsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.statisticsDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.statisticsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.statisticsDataGridView.Location = new System.Drawing.Point(6, 32);
+            this.statisticsDataGridView.Name = "statisticsDataGridView";
+            this.statisticsDataGridView.Size = new System.Drawing.Size(756, 333);
+            this.statisticsDataGridView.TabIndex = 0;
+            // 
             // updateButton
             // 
             this.updateButton.Location = new System.Drawing.Point(12, 415);
@@ -281,6 +330,9 @@ namespace Anketa
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TestDataGridView)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.statisticsDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -308,5 +360,9 @@ namespace Anketa
         private System.Windows.Forms.DataGridView TestDataGridView;
         private System.Windows.Forms.TextBox searchTextBox2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox searchTextBox3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView statisticsDataGridView;
     }
 }
