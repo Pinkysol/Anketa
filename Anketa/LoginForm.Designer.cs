@@ -72,7 +72,7 @@ namespace Anketa
             this.studentRadioButton.TabStop = true;
             this.studentRadioButton.Text = "Студент";
             this.studentRadioButton.UseVisualStyleBackColor = true;
-            this.studentRadioButton.CheckedChanged += new System.EventHandler(this.studentRadioButton_CheckedChanged);
+            this.studentRadioButton.CheckedChanged += new System.EventHandler(this.StudentRadioButton_CheckedChanged);
             // 
             // teacherRadioButton
             // 
@@ -84,7 +84,7 @@ namespace Anketa
             this.teacherRadioButton.TabStop = true;
             this.teacherRadioButton.Text = "Преподователь";
             this.teacherRadioButton.UseVisualStyleBackColor = true;
-            this.teacherRadioButton.CheckedChanged += new System.EventHandler(this.teacherRadioButton_CheckedChanged);
+            this.teacherRadioButton.CheckedChanged += new System.EventHandler(this.TeacherRadioButton_CheckedChanged);
             // 
             // logInButton
             // 
@@ -94,7 +94,7 @@ namespace Anketa
             this.logInButton.TabIndex = 5;
             this.logInButton.Text = "Войти";
             this.logInButton.UseVisualStyleBackColor = true;
-            this.logInButton.Click += new System.EventHandler(this.logInButton_Click);
+            this.logInButton.Click += new System.EventHandler(this.LogInButton_Click);
             // 
             // passwordTextBox
             // 
@@ -102,7 +102,7 @@ namespace Anketa
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(104, 20);
             this.passwordTextBox.TabIndex = 6;
-            this.passwordTextBox.TextChanged += new System.EventHandler(this.passwordTextBox_TextChanged);
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // label4
             // 

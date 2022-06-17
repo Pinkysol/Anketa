@@ -75,7 +75,7 @@ namespace Anketa
             this.updateButton.TabIndex = 1;
             this.updateButton.Text = "Обновить";
             this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            this.updateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // tabPage2
             // 
@@ -117,7 +117,7 @@ namespace Anketa
             this.searchTextBox3.Name = "searchTextBox3";
             this.searchTextBox3.Size = new System.Drawing.Size(100, 20);
             this.searchTextBox3.TabIndex = 2;
-            this.searchTextBox3.TextChanged += new System.EventHandler(this.searchTextBox3_TextChanged);
+            this.searchTextBox3.TextChanged += new System.EventHandler(this.SearchTextBox3_TextChanged);
             // 
             // searchComboBox3
             // 
@@ -157,7 +157,7 @@ namespace Anketa
             this.searchTextBox2.Name = "searchTextBox2";
             this.searchTextBox2.Size = new System.Drawing.Size(100, 20);
             this.searchTextBox2.TabIndex = 1;
-            this.searchTextBox2.TextChanged += new System.EventHandler(this.searchTextBox2_TextChanged);
+            this.searchTextBox2.TextChanged += new System.EventHandler(this.SearchTextBox2_TextChanged);
             // 
             // label7
             // 
@@ -184,7 +184,7 @@ namespace Anketa
             this.searchComboBox2.Name = "searchComboBox2";
             this.searchComboBox2.Size = new System.Drawing.Size(121, 21);
             this.searchComboBox2.TabIndex = 4;
-            this.searchComboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.searchComboBox2.SelectedIndexChanged += new System.EventHandler(this.ComboBox2_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -234,7 +234,7 @@ namespace Anketa
             this.searchTextBox1.Name = "searchTextBox1";
             this.searchTextBox1.Size = new System.Drawing.Size(291, 20);
             this.searchTextBox1.TabIndex = 2;
-            this.searchTextBox1.TextChanged += new System.EventHandler(this.searchTextBox1_TextChanged);
+            this.searchTextBox1.TextChanged += new System.EventHandler(this.SearchTextBox1_TextChanged);
             // 
             // label2
             // 
@@ -261,7 +261,7 @@ namespace Anketa
             this.searchComboBox1.Name = "searchComboBox1";
             this.searchComboBox1.Size = new System.Drawing.Size(291, 21);
             this.searchComboBox1.TabIndex = 5;
-            this.searchComboBox1.SelectedIndexChanged += new System.EventHandler(this.searchComboBox1_SelectedIndexChanged);
+            this.searchComboBox1.SelectedIndexChanged += new System.EventHandler(this.SearchComboBox1_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -313,7 +313,7 @@ namespace Anketa
             this.addButton.TabIndex = 11;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // changeButton
             // 
@@ -323,7 +323,7 @@ namespace Anketa
             this.changeButton.TabIndex = 12;
             this.changeButton.Text = "Изменить";
             this.changeButton.UseVisualStyleBackColor = true;
-            this.changeButton.Click += new System.EventHandler(this.changeButton_Click);
+            this.changeButton.Click += new System.EventHandler(this.ChangeButton_Click);
             // 
             // deleteButton
             // 
@@ -333,7 +333,7 @@ namespace Anketa
             this.deleteButton.TabIndex = 13;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // dataGridView1
             // 

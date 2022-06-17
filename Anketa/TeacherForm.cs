@@ -17,10 +17,9 @@ namespace Anketa
             for (int i = 0; i < departmentNames.Length; i++)
             {
                 this.searchComboBox1.Items.Add(departmentNames[i]);
-            }
-            for (int i = 0; i < departmentNames.Length; i++)
-            {
                 this.editComboBox.Items.Add(departmentNames[i]);
+                this.searchComboBox2.Items.Add(departmentNames[i]);
+                this.searchComboBox3.Items.Add(departmentNames[i]);
             }
 
             UpdateTeacherListDataGridView();
@@ -55,7 +54,7 @@ namespace Anketa
             MySqlConnection connection = MySql.OpenConnection();
             MySqlDataAdapter adapter = new MySqlDataAdapter($"SELECT" +
                 $" questionnaire.id,`ФИО учителя`,`Кафедра`,`Владеет культурной" +
-                $" речью`, `Уважителен к студентам`, `Доступно излогает" +
+                $" речью`, `Уважителен к студентам`, `Доступно излагает" +
                 $" материал`, `Соблюдает логическую последовательность" +
                 $" в изложении`, `Теоретический материал подкрепляет" +
                 $" примерами`, `Использует новый подход в обучении`," +
@@ -81,7 +80,7 @@ namespace Anketa
             MySqlDataAdapter adapter = new MySqlDataAdapter($"SELECT" +
                 $" `ФИО учителя`,`Кафедра`,`Среднее значение` FROM " +
                 $"`teacher`,`departments`,`statistics` WHERE statistics" +
-                $".Teacher_id = teacher.id AND statistics.Department_id " +
+                $".Teacher_id = teacher.id AND teacher.Department_id " +
                 $"= departments.id AND `ФИО учителя` LIKE '%" + 
                 searchTextBox3.Text + "%' AND `Кафедра` LIKE '" +
                 "%" + searchComboBox3.Text + "%'", connection);
@@ -95,7 +94,7 @@ namespace Anketa
             MySql.CloseConnection(connection);
         }
 
-        private void updateButton_Click(object sender, EventArgs e)
+        private void UpdateButton_Click(object sender, EventArgs e)
         {
             UpdateTeacherListDataGridView();
             UpdateTestDataGridView();
@@ -103,14 +102,14 @@ namespace Anketa
             UpdateStatisticsDataGridView();
         }
 
-        private void addButton_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
             MySqlConnection connection = MySql.OpenConnection();
             MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `teacher`" +
                 " (`ФИО учителя`,`Department_id`) VALUES (@teacherName, " +
                 "@departmentId)", connection);
             MySqlCommand command = new MySqlCommand($"SELECT id FROM departments" +
-                $" WHERE `Кафедра` LIKE '{editComboBox.Text}'", connection);
+                $" WHERE `Кафедра` LIKE '%" + editComboBox.Text + "%'", connection);
             MySqlDataReader reader = command.ExecuteReader();
 
             int departmentId = 1;
@@ -146,7 +145,7 @@ namespace Anketa
 
             MySqlConnection connection = MySql.OpenConnection();
             MySqlCommand command = new MySqlCommand($"SELECT `id` FROM teacher WHERE" +
-                $" `ФИО учителя` LIKE '{teacherName}'", connection);
+                $" `ФИО учителя` LIKE '%" + teacherName + "%'", connection);
             MySqlDataReader reader = command.ExecuteReader();
 
             int teacherId = 0;
@@ -156,7 +155,7 @@ namespace Anketa
             }
             reader.Close();
             command = new MySqlCommand($"SELECT id FROM departments" +
-                $" WHERE `Кафедра` LIKE '{editComboBox.Text}'", connection);
+                $" WHERE `Кафедра` LIKE '%" + editComboBox.Text + "%'", connection);
             reader = command.ExecuteReader();
 
             int departmentId = 1;
@@ -170,11 +169,11 @@ namespace Anketa
             if (teacherId != 0)
             {
                 command = new MySqlCommand($"DELETE FROM `questionnaire`" +
-                    $" WHERE `TeacherInitials_id` LIKE '{teacherId}'", connection);
+                    $" WHERE `TeacherInitials_id` LIKE '%" + teacherId + "%'", connection);
                 command.ExecuteNonQuery();
                 command = new MySqlCommand($" UPDATE `teacher` SET " +
-                    $"`ФИО учителя` = '{editTextBox.Text}', `Department_id`" +
-                    $" = '{departmentId}' WHERE id LIKE '{teacherId}'", connection);
+                    $"`ФИО учителя` = '%" + editTextBox.Text + "%', `Department_id`" +
+                    $" = '%" + departmentId + "%' WHERE id LIKE '%" + teacherId + "%'", connection);
                 command.ExecuteNonQuery();
 
                 MessageBox.Show("Преподаватель был изменён");
@@ -208,10 +207,11 @@ namespace Anketa
             if (teacherId != 0)
             {
                 command = new MySqlCommand($"DELETE FROM `questionnaire`" +
-                    $" WHERE `TeacherInitials_id` LIKE '{teacherId}'", connection);
+                    $" WHERE `TeacherInitials_id` LIKE '%" + teacherId +
+                "%'", connection);
                 command.ExecuteNonQuery();
                 command = new MySqlCommand($"DELETE FROM `teacher` WHERE " +
-                    $"`ФИО учителя` LIKE '{teacherName}'", connection);
+                    $"`ФИО учителя` LIKE '%" + teacherName + "%'", connection);
                 command.ExecuteNonQuery();
 
                 MessageBox.Show("Преподаватель был изменён");
@@ -224,13 +224,13 @@ namespace Anketa
             MySql.CloseConnection(connection);
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             DeleteRowTeacherListDataGridView();
             UpdateTeacherListDataGridView();
         }
 
-        private void changeButton_Click(object sender, EventArgs e)
+        private void ChangeButton_Click(object sender, EventArgs e)
         {
             EditRowTeacherListDataGridView();
             UpdateTeacherListDataGridView();
@@ -250,28 +250,28 @@ namespace Anketa
             }
         }
 
-        private void searchTextBox1_TextChanged(object sender, EventArgs e)
+        private void SearchTextBox1_TextChanged(object sender, EventArgs e)
         {
             UpdateTeacherListDataGridView();
         }
 
-        private void searchTextBox2_TextChanged(object sender, EventArgs e)
+        private void SearchTextBox2_TextChanged(object sender, EventArgs e)
         {
             UpdateTestDataGridView();
         }
 
-        private void searchTextBox3_TextChanged(object sender, EventArgs e)
+        private void SearchTextBox3_TextChanged(object sender, EventArgs e)
         {
             MySql.CountStatistics();
             UpdateStatisticsDataGridView();
         }
 
-        private void searchComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void SearchComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateTeacherListDataGridView();
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

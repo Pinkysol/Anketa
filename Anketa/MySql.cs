@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using MySql.Data.MySqlClient;
+
 namespace Anketa
 {
     class MySql
@@ -73,7 +74,7 @@ namespace Anketa
             MySqlConnection connection = MySql.OpenConnection();
             MySqlCommand command = connection.CreateCommand();
             string commandText = "SELECT `TeacherInitials_id`,`Department_id`,`Владеет культурной " +
-                $"речью`,`Уважителен к студентам`,`Доступно излогает " +
+                $"речью`,`Уважителен к студентам`,`Доступно излагает " +
                 $"материал`,`Соблюдает логическую последовательность " +
                 $"в изложении`,`Теоретический материал подкрепляет " +
                 $"примерами`,`Использует новый подход в обучении`,`" +
@@ -183,7 +184,7 @@ namespace Anketa
                 Console.WriteLine(teacherId);
                 if (teacherId==0)
                 {
-                    MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `statistics` (`Teacher_id`,`Department_id`,`Среднее значение`) VALUES ({tableArray[i, 0]},{tableArray[i, 1]},@averageValue)", connection);
+                    MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `statistics` (`Teacher_id`,`Среднее значение`) VALUES ({tableArray[i, 0]},@averageValue)", connection);
                     addCommand.Parameters.Add("@averageValue", MySqlDbType.Double).Value = tableArray[i, 2];
                     addCommand.ExecuteNonQuery();
                 }

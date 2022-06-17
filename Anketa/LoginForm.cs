@@ -15,7 +15,7 @@ namespace Anketa
             passwordTextBox.Enabled = false;
         }
 
-        private void logInButton_Click(object sender, EventArgs e)
+        private void LogInButton_Click(object sender, EventArgs e)
         {
             if (studentRadioButton.Checked)
             {
@@ -43,19 +43,19 @@ namespace Anketa
             }
         }
 
-        private void studentRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void StudentRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             logInButton.Enabled = true;
             label4.Enabled = false;
             passwordTextBox.Enabled = false;
         }
 
-        private void passwordTextBox_TextChanged(object sender, EventArgs e)
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
         {
             logInButton.Enabled = true;
         }
 
-        private void teacherRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void TeacherRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             label4.Enabled = true;
             passwordTextBox.Enabled = true;

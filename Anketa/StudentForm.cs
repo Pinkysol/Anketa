@@ -5,10 +5,10 @@ namespace Anketa
 {
     public partial class StudentForm : Form
     {
-        string[] teacherNames;
         public StudentForm()
         {
             InitializeComponent();
+            string[] teacherNames;
             teacherNames = MySql.GetTeacherNames();
             for (int i = 0; i < teacherNames.Length; i++)
             {
@@ -22,7 +22,7 @@ namespace Anketa
             MySqlCommand addCommand = new MySqlCommand("INSERT INTO " +
                 "`questionnaire` (`TeacherInitials_id`,`Владеет " +
                 "культурной речью`,`Уважителен к студентам`,`Доступно " +
-                "излогает материал`,`Соблюдает логическую последовательность " +
+                "излагает материал`,`Соблюдает логическую последовательность " +
                 "в изложении`,`Теоретический материал подкрепляет примерами`" +
                 ",`Использует новый подход в обучении`,`Проводит индивидуальную " +
                 "работу со студентами`,`Поддерживает студентов`,`Объективная оценка " +
