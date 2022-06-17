@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 namespace Anketa
 {
@@ -14,7 +11,7 @@ namespace Anketa
             MySqlConnection connection = new MySqlConnection
                 ("server=localhost;port=8889;username=root;" +
                 "password=root;database=anketa");
-            if (connection.State == System.Data.ConnectionState.Closed)
+            if (connection.State == ConnectionState.Closed)
             {
                 connection.Open();
             }
@@ -23,7 +20,7 @@ namespace Anketa
 
         public static void CloseConnection(MySqlConnection connection)
         {
-            if (connection.State == System.Data.ConnectionState.Open)
+            if (connection.State == ConnectionState.Open)
             {
                 connection.Close();
             }
