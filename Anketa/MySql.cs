@@ -174,6 +174,10 @@ namespace Anketa
         {
             dataGridView.Rows.Add(record.GetString(0), record.GetString(1), record.GetInt32(2));
         }
+        public static void QuestionsReadSingleRow(DataGridView dataGridView, IDataRecord record)
+        {
+            dataGridView.Rows.Add(record.GetString(0), record.GetString(1), record.GetString(2), record.GetString(3), record.GetString(4), record.GetString(5), record.GetString(6), record.GetString(7), record.GetString(8), record.GetString(9));
+        }
 
         public static void CountStatistics()
         {

@@ -33,7 +33,7 @@ namespace Anketa
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
             this.searchComboBox4 = new System.Windows.Forms.ComboBox();
-            this.searchTextBox3 = new System.Windows.Forms.TextBox();
+            this.SearchTextBox3 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.StatisticsDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -60,6 +60,30 @@ namespace Anketa
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.SearchTextBox4 = new System.Windows.Forms.TextBox();
+            this.QuestionnaireEditTextBox10 = new System.Windows.Forms.TextBox();
+            this.QuestionnaireEditTextBox9 = new System.Windows.Forms.TextBox();
+            this.QuestionnaireEditTextBox8 = new System.Windows.Forms.TextBox();
+            this.QuestionnaireEditTextBox7 = new System.Windows.Forms.TextBox();
+            this.QuestionnaireEditTextBox6 = new System.Windows.Forms.TextBox();
+            this.QuestionnaireEditTextBox5 = new System.Windows.Forms.TextBox();
+            this.QuestionnaireEditTextBox4 = new System.Windows.Forms.TextBox();
+            this.QuestionnaireEditTextBox3 = new System.Windows.Forms.TextBox();
+            this.QuestionnaireEditTextBox2 = new System.Windows.Forms.TextBox();
+            this.QuestionnaireEditTextBox1 = new System.Windows.Forms.TextBox();
+            this.QuestionsDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StatisticsDataGridView)).BeginInit();
             this.tabPage4.SuspendLayout();
@@ -67,6 +91,8 @@ namespace Anketa
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TeacherListDataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.QuestionsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // updateButton
@@ -83,7 +109,7 @@ namespace Anketa
             // 
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.searchComboBox4);
-            this.tabPage2.Controls.Add(this.searchTextBox3);
+            this.tabPage2.Controls.Add(this.SearchTextBox3);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.StatisticsDataGridView);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -112,13 +138,13 @@ namespace Anketa
             this.searchComboBox4.TabIndex = 3;
             this.searchComboBox4.SelectedIndexChanged += new System.EventHandler(this.SearchComboBox4_SelectedIndexChanged);
             // 
-            // searchTextBox3
+            // SearchTextBox3
             // 
-            this.searchTextBox3.Location = new System.Drawing.Point(96, 6);
-            this.searchTextBox3.Name = "searchTextBox3";
-            this.searchTextBox3.Size = new System.Drawing.Size(100, 20);
-            this.searchTextBox3.TabIndex = 2;
-            this.searchTextBox3.TextChanged += new System.EventHandler(this.SearchTextBox3_TextChanged);
+            this.SearchTextBox3.Location = new System.Drawing.Point(96, 6);
+            this.SearchTextBox3.Name = "SearchTextBox3";
+            this.SearchTextBox3.Size = new System.Drawing.Size(100, 20);
+            this.SearchTextBox3.TabIndex = 2;
+            this.SearchTextBox3.TextChanged += new System.EventHandler(this.SearchTextBox3_TextChanged);
             // 
             // label8
             // 
@@ -129,13 +155,13 @@ namespace Anketa
             this.label8.TabIndex = 1;
             this.label8.Text = "Поиск по ФИО";
             // 
-            // statisticsDataGridView
+            // StatisticsDataGridView
             // 
             this.StatisticsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.StatisticsDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.StatisticsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.StatisticsDataGridView.Location = new System.Drawing.Point(6, 32);
-            this.StatisticsDataGridView.Name = "statisticsDataGridView";
+            this.StatisticsDataGridView.Name = "StatisticsDataGridView";
             this.StatisticsDataGridView.Size = new System.Drawing.Size(756, 333);
             this.StatisticsDataGridView.TabIndex = 0;
             // 
@@ -251,6 +277,7 @@ namespace Anketa
             this.TeacherListDataGridView.Name = "TeacherListDataGridView";
             this.TeacherListDataGridView.Size = new System.Drawing.Size(455, 359);
             this.TeacherListDataGridView.TabIndex = 14;
+            this.TeacherListDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TeacherListDataGridView_CellClick);
             // 
             // deleteButton
             // 
@@ -373,11 +400,232 @@ namespace Anketa
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(776, 397);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.label22);
+            this.tabPage3.Controls.Add(this.label21);
+            this.tabPage3.Controls.Add(this.label20);
+            this.tabPage3.Controls.Add(this.label19);
+            this.tabPage3.Controls.Add(this.label18);
+            this.tabPage3.Controls.Add(this.label17);
+            this.tabPage3.Controls.Add(this.label16);
+            this.tabPage3.Controls.Add(this.label15);
+            this.tabPage3.Controls.Add(this.label14);
+            this.tabPage3.Controls.Add(this.label13);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.SearchTextBox4);
+            this.tabPage3.Controls.Add(this.QuestionnaireEditTextBox10);
+            this.tabPage3.Controls.Add(this.QuestionnaireEditTextBox9);
+            this.tabPage3.Controls.Add(this.QuestionnaireEditTextBox8);
+            this.tabPage3.Controls.Add(this.QuestionnaireEditTextBox7);
+            this.tabPage3.Controls.Add(this.QuestionnaireEditTextBox6);
+            this.tabPage3.Controls.Add(this.QuestionnaireEditTextBox5);
+            this.tabPage3.Controls.Add(this.QuestionnaireEditTextBox4);
+            this.tabPage3.Controls.Add(this.QuestionnaireEditTextBox3);
+            this.tabPage3.Controls.Add(this.QuestionnaireEditTextBox2);
+            this.tabPage3.Controls.Add(this.QuestionnaireEditTextBox1);
+            this.tabPage3.Controls.Add(this.QuestionsDataGridView);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(768, 371);
+            this.tabPage3.TabIndex = 5;
+            this.tabPage3.Text = "Редактировать списки вопросов";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 293);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(50, 13);
+            this.label22.TabIndex = 22;
+            this.label22.Text = "Вопрос9";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 267);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(50, 13);
+            this.label21.TabIndex = 21;
+            this.label21.Text = "Вопрос8";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 241);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(50, 13);
+            this.label20.TabIndex = 20;
+            this.label20.Text = "Вопрос7";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 215);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(50, 13);
+            this.label19.TabIndex = 19;
+            this.label19.Text = "Вопрос6";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(6, 189);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(50, 13);
+            this.label18.TabIndex = 18;
+            this.label18.Text = "Вопрос5";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 163);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(50, 13);
+            this.label17.TabIndex = 17;
+            this.label17.Text = "Вопрос4";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 137);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(50, 13);
+            this.label16.TabIndex = 16;
+            this.label16.Text = "Вопрос3";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 111);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(50, 13);
+            this.label15.TabIndex = 15;
+            this.label15.Text = "Вопрос2";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 85);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(50, 13);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "Вопрос1";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 59);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(97, 13);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "Название анкеты";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 9);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(147, 13);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "Поиск по назавнию анкеты";
+            // 
+            // SearchTextBox4
+            // 
+            this.SearchTextBox4.Location = new System.Drawing.Point(187, 6);
+            this.SearchTextBox4.Name = "SearchTextBox4";
+            this.SearchTextBox4.Size = new System.Drawing.Size(100, 20);
+            this.SearchTextBox4.TabIndex = 11;
+            // 
+            // QuestionnaireEditTextBox10
+            // 
+            this.QuestionnaireEditTextBox10.Location = new System.Drawing.Point(147, 290);
+            this.QuestionnaireEditTextBox10.Name = "QuestionnaireEditTextBox10";
+            this.QuestionnaireEditTextBox10.Size = new System.Drawing.Size(140, 20);
+            this.QuestionnaireEditTextBox10.TabIndex = 10;
+            // 
+            // QuestionnaireEditTextBox9
+            // 
+            this.QuestionnaireEditTextBox9.Location = new System.Drawing.Point(147, 264);
+            this.QuestionnaireEditTextBox9.Name = "QuestionnaireEditTextBox9";
+            this.QuestionnaireEditTextBox9.Size = new System.Drawing.Size(140, 20);
+            this.QuestionnaireEditTextBox9.TabIndex = 9;
+            // 
+            // QuestionnaireEditTextBox8
+            // 
+            this.QuestionnaireEditTextBox8.Location = new System.Drawing.Point(147, 238);
+            this.QuestionnaireEditTextBox8.Name = "QuestionnaireEditTextBox8";
+            this.QuestionnaireEditTextBox8.Size = new System.Drawing.Size(140, 20);
+            this.QuestionnaireEditTextBox8.TabIndex = 8;
+            // 
+            // QuestionnaireEditTextBox7
+            // 
+            this.QuestionnaireEditTextBox7.Location = new System.Drawing.Point(147, 212);
+            this.QuestionnaireEditTextBox7.Name = "QuestionnaireEditTextBox7";
+            this.QuestionnaireEditTextBox7.Size = new System.Drawing.Size(140, 20);
+            this.QuestionnaireEditTextBox7.TabIndex = 7;
+            // 
+            // QuestionnaireEditTextBox6
+            // 
+            this.QuestionnaireEditTextBox6.Location = new System.Drawing.Point(147, 186);
+            this.QuestionnaireEditTextBox6.Name = "QuestionnaireEditTextBox6";
+            this.QuestionnaireEditTextBox6.Size = new System.Drawing.Size(140, 20);
+            this.QuestionnaireEditTextBox6.TabIndex = 6;
+            // 
+            // QuestionnaireEditTextBox5
+            // 
+            this.QuestionnaireEditTextBox5.Location = new System.Drawing.Point(147, 160);
+            this.QuestionnaireEditTextBox5.Name = "QuestionnaireEditTextBox5";
+            this.QuestionnaireEditTextBox5.Size = new System.Drawing.Size(140, 20);
+            this.QuestionnaireEditTextBox5.TabIndex = 5;
+            // 
+            // QuestionnaireEditTextBox4
+            // 
+            this.QuestionnaireEditTextBox4.Location = new System.Drawing.Point(147, 134);
+            this.QuestionnaireEditTextBox4.Name = "QuestionnaireEditTextBox4";
+            this.QuestionnaireEditTextBox4.Size = new System.Drawing.Size(140, 20);
+            this.QuestionnaireEditTextBox4.TabIndex = 4;
+            // 
+            // QuestionnaireEditTextBox3
+            // 
+            this.QuestionnaireEditTextBox3.Location = new System.Drawing.Point(147, 108);
+            this.QuestionnaireEditTextBox3.Name = "QuestionnaireEditTextBox3";
+            this.QuestionnaireEditTextBox3.Size = new System.Drawing.Size(140, 20);
+            this.QuestionnaireEditTextBox3.TabIndex = 3;
+            // 
+            // QuestionnaireEditTextBox2
+            // 
+            this.QuestionnaireEditTextBox2.Location = new System.Drawing.Point(147, 82);
+            this.QuestionnaireEditTextBox2.Name = "QuestionnaireEditTextBox2";
+            this.QuestionnaireEditTextBox2.Size = new System.Drawing.Size(140, 20);
+            this.QuestionnaireEditTextBox2.TabIndex = 2;
+            // 
+            // QuestionnaireEditTextBox1
+            // 
+            this.QuestionnaireEditTextBox1.Location = new System.Drawing.Point(147, 56);
+            this.QuestionnaireEditTextBox1.Name = "QuestionnaireEditTextBox1";
+            this.QuestionnaireEditTextBox1.Size = new System.Drawing.Size(140, 20);
+            this.QuestionnaireEditTextBox1.TabIndex = 1;
+            // 
+            // QuestionsDataGridView
+            // 
+            this.QuestionsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.QuestionsDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.QuestionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.QuestionsDataGridView.Location = new System.Drawing.Point(307, 6);
+            this.QuestionsDataGridView.Name = "QuestionsDataGridView";
+            this.QuestionsDataGridView.Size = new System.Drawing.Size(455, 359);
+            this.QuestionsDataGridView.TabIndex = 0;
+            this.QuestionsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.QuestionsDataGridView_CellClick);
             // 
             // TeacherForm
             // 
@@ -399,6 +647,9 @@ namespace Anketa
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TeacherListDataGridView)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.QuestionsDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -408,7 +659,7 @@ namespace Anketa
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox searchComboBox4;
-        private System.Windows.Forms.TextBox searchTextBox3;
+        private System.Windows.Forms.TextBox SearchTextBox3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView StatisticsDataGridView;
         private System.Windows.Forms.TabPage tabPage4;
@@ -435,5 +686,29 @@ namespace Anketa
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox SearchComboBox3;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox SearchTextBox4;
+        private System.Windows.Forms.TextBox QuestionnaireEditTextBox10;
+        private System.Windows.Forms.TextBox QuestionnaireEditTextBox9;
+        private System.Windows.Forms.TextBox QuestionnaireEditTextBox8;
+        private System.Windows.Forms.TextBox QuestionnaireEditTextBox7;
+        private System.Windows.Forms.TextBox QuestionnaireEditTextBox6;
+        private System.Windows.Forms.TextBox QuestionnaireEditTextBox5;
+        private System.Windows.Forms.TextBox QuestionnaireEditTextBox4;
+        private System.Windows.Forms.TextBox QuestionnaireEditTextBox3;
+        private System.Windows.Forms.TextBox QuestionnaireEditTextBox2;
+        private System.Windows.Forms.TextBox QuestionnaireEditTextBox1;
+        private System.Windows.Forms.DataGridView QuestionsDataGridView;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
     }
 }
