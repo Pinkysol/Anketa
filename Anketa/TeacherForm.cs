@@ -17,7 +17,7 @@ namespace Anketa
             for (int i = 0; i < departmentNames.Length; i++)
             {
                 searchComboBox1.Items.Add(departmentNames[i]);
-                editComboBox.Items.Add(departmentNames[i]);
+                EditComboBox.Items.Add(departmentNames[i]);
                 searchComboBox2.Items.Add(departmentNames[i]);
                 searchComboBox4.Items.Add(departmentNames[i]);
             }
@@ -186,130 +186,270 @@ namespace Anketa
             UpdateTestDataGridView();
             MySql.CountStatistics();
             UpdateStatisticsDataGridView();
+            UpdateQuestionsDataGridView();
         }
 
-        private void AddButton_Click(object sender, EventArgs e)
+        private void AddRowTeacherListDataGridView()
         {
-            MySqlConnection connection = MySql.OpenConnection();
-            MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `teacher`" +
-                " (`TeacherName`,`Department_Id`) VALUES (@teacherName, " +
-                "@departmentId)", connection);
-            MySqlCommand command = new MySqlCommand($"SELECT Id FROM departments" +
-                $" WHERE `DepartmentName` LIKE '%" + editComboBox.Text + "%'", connection);
-            MySqlDataReader reader = command.ExecuteReader();
-
-            int departmentId = 1;
-            while (reader.Read())
+            if (EditComboBox.Text != string.Empty || EditTextBox.Text != string.Empty)
             {
-                departmentId = reader.GetInt32(0);
-            }
+                MySqlConnection connection = MySql.OpenConnection();
+                MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `teacher`" +
+                    " (`TeacherName`,`Department_Id`) VALUES (@teacherName, " +
+                    "@departmentId)", connection);
+                MySqlCommand command = new MySqlCommand($"SELECT Id FROM departments" +
+                    $" WHERE `DepartmentName` LIKE '%" + EditComboBox.Text + "%'", connection);
+                MySqlDataReader reader = command.ExecuteReader();
 
-            reader.Close();
+                int departmentId = 1;
+                while (reader.Read())
+                {
+                    departmentId = reader.GetInt32(0);
+                }
 
-            addCommand.Parameters.Add("@teacherName", MySqlDbType.VarChar).Value
-                = editTextBox.Text;
-            addCommand.Parameters.Add("@departmentId", MySqlDbType.Int32).Value
-                = departmentId;
+                reader.Close();
 
-            if (addCommand.ExecuteNonQuery() == 1)
-            {
+                addCommand.Parameters.Add("@teacherName", MySqlDbType.VarChar).Value
+                    = EditTextBox.Text;
+                addCommand.Parameters.Add("@departmentId", MySqlDbType.Int32).Value
+                    = departmentId;
+
+                if (addCommand.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("Преподаватель был добавлен");
+                }
+                else
+                {
+                    MessageBox.Show("Преподаватель не был добавлен");
+                }
                 MySql.CloseConnection(connection);
-                MessageBox.Show("Преподаватель был добавлен");
             }
             else
             {
-                MySql.CloseConnection(connection);
-                MessageBox.Show("Преподаватель не был добавлен");
+                MessageBox.Show("Введите данные для добавления");
             }
         }
 
         private void EditRowTeacherListDataGridView()
         {
-            int index = TeacherListDataGridView.CurrentCell.RowIndex;
-
-            MySqlConnection connection = MySql.OpenConnection();
-
-            int teacherId = 0;
-            teacherId = MySql.GetTeacherId(TeacherListDataGridView.Rows[index].Cells[0].Value.ToString());
-
-            int departmentId = MySql.GetDepartmentsId(editComboBox.Text);
-
-            if (teacherId != 0)
+            int index = - 1;
+            index = TeacherListDataGridView.CurrentCell.RowIndex;
+            if (index != -1)
             {
-                MySqlCommand command = new MySqlCommand($"DELETE FROM `answers`" +
-                    $" WHERE `Teacher_Id` LIKE '%" + teacherId + "%'", connection);
-                command.ExecuteNonQuery();
-                command = new MySqlCommand($"DELETE FROM `statistics` WHERE " +
-                    $"`Teacher_Id` LIKE '%" + teacherId + "%'", connection);
-                command.ExecuteNonQuery();
-                command = new MySqlCommand($" UPDATE `teacher` SET `TeacherName` = '%" + editTextBox.Text + "%', `Department_Id` = '%" + departmentId + "%' WHERE Id LIKE '%" + teacherId + "%'", connection);
-                command.ExecuteNonQuery();
+                MySqlConnection connection = MySql.OpenConnection();
 
-                MessageBox.Show("Преподаватель был изменён");
+                int teacherId = 0;
+                teacherId = MySql.GetTeacherId(TeacherListDataGridView.Rows[index].Cells[0].Value.ToString());
+
+                int departmentId = MySql.GetDepartmentsId(EditComboBox.Text);
+
+                if (teacherId != 0)
+                {
+                    MySqlCommand command = new MySqlCommand($"DELETE FROM `answers`" +
+                        $" WHERE `Teacher_Id` LIKE '%" + teacherId + "%'", connection);
+                    command.ExecuteNonQuery();
+                    command = new MySqlCommand($"DELETE FROM `statistics` WHERE " +
+                        $"`Teacher_Id` LIKE '%" + teacherId + "%'", connection);
+                    command.ExecuteNonQuery();
+                    command = new MySqlCommand($" UPDATE `teacher` SET `TeacherName` = '{EditTextBox.Text}', `Department_Id` = '{ departmentId }' WHERE Id LIKE '{teacherId}'", connection);
+                    command.ExecuteNonQuery();
+
+                    MessageBox.Show("Преподаватель был изменён");
+                }
+                else
+                {
+                    MessageBox.Show("Преподаватель не был изменён");
+                }
+
+                MySql.CloseConnection(connection);
             }
             else
             {
-                MessageBox.Show("Преподаватель не был изменён");
+                MessageBox.Show("Выберите преподавателя для изменения");
             }
-
         }
 
         private void DeleteRowTeacherListDataGridView()
         {
-            int index = TeacherListDataGridView.CurrentCell.RowIndex;
-
-            MySqlConnection connection = MySql.OpenConnection();
-            int teacherId = 0;
-            teacherId = MySql.GetTeacherId(TeacherListDataGridView.Rows[index].Cells[0].Value.ToString());
-
-            if (teacherId != 0)
+            int index = -1;
+            index = TeacherListDataGridView.CurrentCell.RowIndex;
+            if (index != -1)
             {
-                MySqlCommand command = new MySqlCommand($"DELETE FROM `answers`" +
-                    $" WHERE `Teacher_Id` LIKE '%" + teacherId +
-                "%'", connection);
-                command.ExecuteNonQuery();
-                command = new MySqlCommand($"DELETE FROM `statistics` WHERE " +
-                    $"`Teacher_Id` LIKE '%" + teacherId + "%'", connection);
-                command.ExecuteNonQuery();
-                command = new MySqlCommand($"DELETE FROM `teacher` WHERE " +
-                    $"`Id` LIKE '%" + teacherId + "%'", connection);
-                command.ExecuteNonQuery();
+                MySqlConnection connection = MySql.OpenConnection();
+                int teacherId = 0;
+                teacherId = MySql.GetTeacherId(TeacherListDataGridView.Rows[index].Cells[0].Value.ToString());
 
-                MessageBox.Show("Преподаватель был удалён");
+                if (teacherId != 0)
+                {
+                    MySqlCommand command = new MySqlCommand($"DELETE FROM `answers`" +
+                        $" WHERE `Teacher_Id` LIKE '%" + teacherId +
+                    "%'", connection);
+                    command.ExecuteNonQuery();
+                    command = new MySqlCommand($"DELETE FROM `statistics` WHERE " +
+                        $"`Teacher_Id` LIKE '%" + teacherId + "%'", connection);
+                    command.ExecuteNonQuery();
+                    command = new MySqlCommand($"DELETE FROM `teacher` WHERE " +
+                        $"`Id` LIKE '%" + teacherId + "%'", connection);
+                    command.ExecuteNonQuery();
+
+                    MessageBox.Show("Преподаватель был удалён");
+                }
+                else
+                {
+                    MessageBox.Show("Преподаватель не был удалён");
+                }
+
+                MySql.CloseConnection(connection);
             }
             else
             {
-                MessageBox.Show("Преподаватель не был удалён");
+                MessageBox.Show("Выберите преподавателя для удаления");
             }
-
-            MySql.CloseConnection(connection);
         }
 
-        private void DeleteButton_Click(object sender, EventArgs e)
+        private void AddRowQuestionsDataGridView()
         {
-            DeleteRowTeacherListDataGridView();
+            if (QuestionnaireEditTextBox1.Text != string.Empty || QuestionnaireEditTextBox2.Text != string.Empty || QuestionnaireEditTextBox3.Text != string.Empty || QuestionnaireEditTextBox4.Text != string.Empty || QuestionnaireEditTextBox5.Text != string.Empty || QuestionnaireEditTextBox6.Text != string.Empty || QuestionnaireEditTextBox7.Text != string.Empty || QuestionnaireEditTextBox8.Text != string.Empty || QuestionnaireEditTextBox9.Text != string.Empty || QuestionnaireEditTextBox10.Text != string.Empty)
+            {
+                MySqlConnection connection = MySql.OpenConnection();
+                MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `questionnaire`" +
+                    " (`QuestionnaireName`,`Question1`,`Question2`,`Question3`,`Question4`,`Question5`,`Question6`,`Question7`,`Question8`,`Question9`) VALUES (@QuestionnaireName, @q1,@q2,@q3,@q4,@q5,@q6,@q7,@q8,@q9)", connection);
+
+                addCommand.Parameters.Add("@QuestionnaireName", MySqlDbType.VarChar).Value
+                    = QuestionnaireEditTextBox1.Text;
+                addCommand.Parameters.Add("@q1", MySqlDbType.VarChar).Value
+                    = QuestionnaireEditTextBox2.Text; 
+                addCommand.Parameters.Add("@q2", MySqlDbType.VarChar).Value
+                    = QuestionnaireEditTextBox3.Text; 
+                addCommand.Parameters.Add("@q3", MySqlDbType.VarChar).Value
+                    = QuestionnaireEditTextBox4.Text; 
+                addCommand.Parameters.Add("@q4", MySqlDbType.VarChar).Value
+                    = QuestionnaireEditTextBox5.Text; 
+                addCommand.Parameters.Add("@q5", MySqlDbType.VarChar).Value
+                    = QuestionnaireEditTextBox6.Text; 
+                addCommand.Parameters.Add("@q6", MySqlDbType.VarChar).Value
+                    = QuestionnaireEditTextBox7.Text; 
+                addCommand.Parameters.Add("@q7", MySqlDbType.VarChar).Value
+                    = QuestionnaireEditTextBox8.Text; 
+                addCommand.Parameters.Add("@q8", MySqlDbType.VarChar).Value
+                    = QuestionnaireEditTextBox9.Text; 
+                addCommand.Parameters.Add("@q9", MySqlDbType.VarChar).Value
+                    = QuestionnaireEditTextBox10.Text;
+
+
+                if (addCommand.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("Анкета была добавлена");
+                }
+                else
+                {
+                    MessageBox.Show("Анкета не была добавлена");
+                }
+                MySql.CloseConnection(connection);
+            }
+            else
+            {
+                MessageBox.Show("Введите данные для добавления");
+            }
+        }
+
+        private void EditRowQuestionsDataGridView()
+        {
+            int index = -1;
+            index = QuestionsDataGridView.CurrentCell.RowIndex;
+            if (index != -1)
+            {
+                if (QuestionnaireEditTextBox1.Text != string.Empty || QuestionnaireEditTextBox2.Text != string.Empty || QuestionnaireEditTextBox3.Text != string.Empty || QuestionnaireEditTextBox4.Text != string.Empty || QuestionnaireEditTextBox5.Text != string.Empty || QuestionnaireEditTextBox6.Text != string.Empty || QuestionnaireEditTextBox7.Text != string.Empty || QuestionnaireEditTextBox8.Text != string.Empty || QuestionnaireEditTextBox9.Text != string.Empty || QuestionnaireEditTextBox10.Text != string.Empty)
+                {
+                    ;
+                    MySqlConnection connection = MySql.OpenConnection();
+
+                    MySqlCommand command = new MySqlCommand($"UPDATE `questionnaire` SET `QuestionnaireName` = '{QuestionnaireEditTextBox1.Text}', `Question1` = '{QuestionnaireEditTextBox2.Text}', `Question2` = '{QuestionnaireEditTextBox3.Text}', `Question3` = '{QuestionnaireEditTextBox4.Text}', `Question4` = '{ QuestionnaireEditTextBox5.Text}', `Question5` = '{ QuestionnaireEditTextBox6.Text}', `Question6` = '{QuestionnaireEditTextBox7.Text}', `Question7` = '{QuestionnaireEditTextBox8.Text}', `Question8` = '{QuestionnaireEditTextBox9.Text}', `Question9` = '{QuestionnaireEditTextBox10.Text}' WHERE `QuestionnaireName` LIKE '%" + QuestionsDataGridView.Rows[index].Cells[0].Value.ToString() + "%'", connection);
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("Анкета была изменена");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Анкета не была изменена");
+                    }
+
+                    MySql.CloseConnection(connection);
+                }
+                else
+                {
+                    MessageBox.Show("Заполните текстбоксы выше для изменения");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите анкету для изменения");
+            }
+        }
+
+        private void DeleteRowQuestionsDataGridView()
+        {
+            int index = -1;
+            index = QuestionsDataGridView.CurrentCell.RowIndex;
+            if (index != -1)
+            {
+                MySqlConnection connection = MySql.OpenConnection();
+                int questionnaireId = 0;
+                questionnaireId = MySql.GetQuestionnaireId(QuestionsDataGridView.Rows[index].Cells[0].Value.ToString());
+
+                if (questionnaireId != 0)
+                {
+                    MySqlCommand command = new MySqlCommand($"DELETE FROM `answers`" +
+                        $" WHERE `Questionnaire_Id` LIKE '%" + questionnaireId +
+                    "%'", connection);
+                    command.ExecuteNonQuery();
+                    command = new MySqlCommand($"DELETE FROM `questionnaire` WHERE " +
+                        $"`Id` LIKE '%" + questionnaireId + "%'", connection);
+                    command.ExecuteNonQuery();
+
+                    MessageBox.Show("Анкета была удалёна");
+                }
+                else
+                {
+                    MessageBox.Show("Анкета не была удалёна");
+                }
+
+                MySql.CloseConnection(connection);
+            }
+            else
+            {
+                MessageBox.Show("Выберите анкету для удаления");
+            }
+        }
+        private void AddButton1_Click(object sender, EventArgs e)
+        {
+            AddRowTeacherListDataGridView();
+            UpdateTeacherListDataGridView();
+        }
+        private void ChangeButton1_Click(object sender, EventArgs e)
+        {
+            EditRowTeacherListDataGridView();
             UpdateTeacherListDataGridView();
         }
 
-        private void ChangeButton_Click(object sender, EventArgs e)
+        private void DeleteButton1_Click(object sender, EventArgs e)
         {
-            EditRowTeacherListDataGridView();
+            DeleteRowTeacherListDataGridView();
             UpdateTeacherListDataGridView();
         }
 
         private void TeacherListDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int selectedRow = e.RowIndex;
-
-            if(e.RowIndex>=0)
+            Console.Write(selectedRow);
+            if(selectedRow >= 0)
             {
                 DataGridViewRow row = TeacherListDataGridView.Rows[selectedRow];
-
-                editTextBox.Text = row.Cells[0].Value.ToString();
-                editComboBox.Text = row.Cells[1].Value.ToString();
-
+                EditTextBox.Text = row.Cells[0].Value.ToString();
+                EditComboBox.Text = row.Cells[1].Value.ToString();
             }
         }
+
         private void QuestionsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int selectedRow = e.RowIndex;
@@ -367,6 +507,27 @@ namespace Anketa
             UpdateStatisticsDataGridView();
         }
 
+        private void SearchTextBox4_TextChanged(object sender, EventArgs e)
+        {
+            UpdateQuestionsDataGridView();
+        }
 
+        private void AddButton2_Click(object sender, EventArgs e)
+        {
+            AddRowQuestionsDataGridView();
+            UpdateQuestionsDataGridView();
+        }
+
+        private void EditButton2_Click(object sender, EventArgs e)
+        {
+            EditRowQuestionsDataGridView();
+            UpdateQuestionsDataGridView();
+        }
+
+        private void DeleteButton2_Click(object sender, EventArgs e)
+        {
+            DeleteRowQuestionsDataGridView();
+            UpdateQuestionsDataGridView();
+        }
     }
 }
