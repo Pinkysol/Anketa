@@ -48,7 +48,7 @@ namespace Anketa
             MySql.CloseConnection(connection);
             return row;
         }
-
+        
         public static string[] GetTeacherNames()
         {
             MySqlConnection connection = MySql.OpenConnection();
@@ -289,7 +289,8 @@ namespace Anketa
                 Console.WriteLine(teacherId);
                 if (teacherId==0)
                 {
-                    MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `statistics` (`Teacher_Id`,`AverageValue`) VALUES ('%" + tableArray[i, 0] + "%',@averageValue)", connection);
+                    MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `statistics` (`Teacher_Id`,`AverageValue`) VALUES (@teacher_id,@averageValue)", connection);
+                    addCommand.Parameters.Add("@teacher_id", MySqlDbType.Double).Value = tableArray[i, 0];
                     addCommand.Parameters.Add("@averageValue", MySqlDbType.Double).Value = tableArray[i, 2];
                     addCommand.ExecuteNonQuery();
                 }

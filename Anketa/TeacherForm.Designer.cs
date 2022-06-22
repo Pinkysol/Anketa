@@ -318,11 +318,11 @@ namespace Anketa
             this.AddButton1.UseVisualStyleBackColor = true;
             this.AddButton1.Click += new System.EventHandler(this.AddButton1_Click);
             // 
-            // editComboBox
+            // EditComboBox
             // 
             this.EditComboBox.FormattingEnabled = true;
             this.EditComboBox.Location = new System.Drawing.Point(4, 289);
-            this.EditComboBox.Name = "editComboBox";
+            this.EditComboBox.Name = "EditComboBox";
             this.EditComboBox.Size = new System.Drawing.Size(297, 21);
             this.EditComboBox.TabIndex = 10;
             // 

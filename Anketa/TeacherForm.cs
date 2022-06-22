@@ -41,30 +41,45 @@ namespace Anketa
         
         private void TeacherListCreateColumns()
         {
-            TeacherListDataGridView.Columns.Add("TeacherName", "ФИО преподавателя");
-            TeacherListDataGridView.Columns.Add("DepartmentName", "Кафедра");
+            TeacherListDataGridView.Columns.Add("TeacherName", 
+                "ФИО преподавателя");
+            TeacherListDataGridView.Columns.Add("DepartmentName", 
+                "Кафедра");
         }
 
         private void UpdateTeacherListDataGridView()
         {
+            //Очистка строк в DataGridView
             TeacherListDataGridView.Rows.Clear();
+            //Открытие соединения
             MySqlConnection connection = MySql.OpenConnection();
-            MySqlCommand command = new MySqlCommand("SELECT `TeacherName`,`DepartmentName` FROM `departments`,`teacher` WHERE departments.Id = teacher.Department_Id AND `TeacherName` LIKE '%" + searchTextBox1.Text + "%' AND `DepartmentName` LIKE '%" + searchComboBox1.Text + "%'", connection);
-
+            //Создание команды с командной строкой MySql
+            MySqlCommand command = new MySqlCommand("SELECT " +
+                "`TeacherName`,`DepartmentName` FROM `departments`" +
+                ",`teacher` WHERE departments.Id = teacher." +
+                "Department_Id AND `TeacherName` LIKE '%" + 
+                searchTextBox1.Text + "%' AND `DepartmentName` " +
+                "LIKE '%" + searchComboBox1.Text + "%'", connection);
+            //Создать Data Reader и выполнить команду чтения
             MySqlDataReader reader = command.ExecuteReader();
-
+            //Прочитать данные и записать их в DataGridView построчно
             while (reader.Read())
             {
-                MySql.TeacherListReadSingleRow(TeacherListDataGridView,reader);
+                MySql.TeacherListReadSingleRow(TeacherListDataGridView
+                    ,reader);
             }
-
+            //Закрыть Data Reader
             reader.Close();
+            //Закрыть соединение
             MySql.CloseConnection(connection);
         }
+
         private void TestCreateColumns()
         {
-            TestDataGridView.Columns.Add("QuestionnaireName", "Название анкеты");
-            TestDataGridView.Columns.Add("TeacherName", "ФИО преподавателя");
+            TestDataGridView.Columns.Add("QuestionnaireName", 
+                "Название анкеты");
+            TestDataGridView.Columns.Add("TeacherName", 
+                "ФИО преподавателя");
             TestDataGridView.Columns.Add("DepartmentName", "Кафедра");
             TestDataGridView.Columns.Add("Answer1", "Ответ1");
             TestDataGridView.Columns.Add("Answer2", "Ответ2");
@@ -93,28 +108,58 @@ namespace Anketa
                 }
 
                 int questionnaireId = MySql.GetQuestionnaireId(SearchComboBox3.Text);
-                MySqlDataAdapter adapter = new MySqlDataAdapter($"SELECT `Question1`,`Question2`,`Question3`,`Question4`,`Question5`,`Question6`,`Question7`,`Question8`,`Question9` FROM questionnaire WHERE `Id` LIKE '%" + questionnaireId + "%'", connection);
+                MySqlDataAdapter adapter = new MySqlDataAdapter
+                    ($"SELECT `Question1`,`Question2`,`Question3`," +
+                    $"`Question4`,`Question5`,`Question6`,`Question7`" +
+                    $",`Question8`,`Question9` FROM questionnaire " +
+                    $"WHERE `Id` LIKE '%" + questionnaireId + "%'",
+                    connection);
 
                 DataTable labelsValueTable = new DataTable();
 
                 adapter.Fill(labelsValueTable);
 
-                TestDataGridView.Columns.Add("QuestionnaireName", "Название анкеты");
-                TestDataGridView.Columns.Add("TeacherName", "ФИО преподавателя");
-                TestDataGridView.Columns.Add("DepartmentName", "Кафедра");
-                TestDataGridView.Columns.Add("Answer1", labelsValueTable.Rows[0][0].ToString());
-                TestDataGridView.Columns.Add("Answer2", labelsValueTable.Rows[0][1].ToString());
-                TestDataGridView.Columns.Add("Answer3", labelsValueTable.Rows[0][2].ToString());
-                TestDataGridView.Columns.Add("Answer4", labelsValueTable.Rows[0][3].ToString());
-                TestDataGridView.Columns.Add("Answer5", labelsValueTable.Rows[0][4].ToString());
-                TestDataGridView.Columns.Add("Answer6", labelsValueTable.Rows[0][5].ToString());
-                TestDataGridView.Columns.Add("Answer7", labelsValueTable.Rows[0][6].ToString());
-                TestDataGridView.Columns.Add("Answer8", labelsValueTable.Rows[0][7].ToString());
-                TestDataGridView.Columns.Add("Answer9", labelsValueTable.Rows[0][8].ToString());
-                TestDataGridView.Columns.Add("Comment", "Комментарий");
+                TestDataGridView.Columns.Add("QuestionnaireName",
+                    "Название анкеты");
+                TestDataGridView.Columns.Add("TeacherName", "ФИО " +
+                    "преподавателя");
+                TestDataGridView.Columns.Add("DepartmentName", 
+                    "Кафедра");
+                TestDataGridView.Columns.Add("Answer1", 
+                    labelsValueTable.Rows[0][0].ToString());
+                TestDataGridView.Columns.Add("Answer2", 
+                    labelsValueTable.Rows[0][1].ToString());
+                TestDataGridView.Columns.Add("Answer3", 
+                    labelsValueTable.Rows[0][2].ToString());
+                TestDataGridView.Columns.Add("Answer4", 
+                    labelsValueTable.Rows[0][3].ToString());
+                TestDataGridView.Columns.Add("Answer5", 
+                    labelsValueTable.Rows[0][4].ToString());
+                TestDataGridView.Columns.Add("Answer6", 
+                    labelsValueTable.Rows[0][5].ToString());
+                TestDataGridView.Columns.Add("Answer7", 
+                    labelsValueTable.Rows[0][6].ToString());
+                TestDataGridView.Columns.Add("Answer8", 
+                    labelsValueTable.Rows[0][7].ToString());
+                TestDataGridView.Columns.Add("Answer9", 
+                    labelsValueTable.Rows[0][8].ToString());
+                TestDataGridView.Columns.Add("Comment", 
+                    "Комментарий");
             }
 
-            MySqlCommand command = new MySqlCommand($"SELECT `QuestionnaireName`,`TeacherName`,`DepartmentName`,`Answer1`,`Answer2`,`Answer3`,`Answer4`,`Answer5`,`Answer6`,`Answer7`,`Answer8`,`Answer9`,`Comment` FROM `answers`,`teacher`,`departments`,`questionnaire` WHERE answers.Teacher_Id = teacher.Id AND teacher.Department_Id = departments.Id AND questionnaire.Id = answers.Questionnaire_Id AND `TeacherName` LIKE '%" + searchTextBox2.Text + "%'AND `DepartmentName` LIKE '%" + searchComboBox2.Text + "%'AND `QuestionnaireName` LIKE '%" + SearchComboBox3.Text + "%'", connection);
+            MySqlCommand command = new MySqlCommand($"SELECT" +
+                $" `QuestionnaireName`,`TeacherName`,`DepartmentName`" +
+                $",`Answer1`,`Answer2`,`Answer3`,`Answer4`,`Answer5`" +
+                $",`Answer6`,`Answer7`,`Answer8`,`Answer9`,`Comment`" +
+                $" FROM `answers`,`teacher`,`departments`," +
+                $"`questionnaire` WHERE answers.Teacher_Id = " +
+                $"teacher.Id AND teacher.Department_Id = " +
+                $"departments.Id AND questionnaire.Id = " +
+                $"answers.Questionnaire_Id AND `TeacherName` LIKE " +
+                $"'%" + searchTextBox2.Text + "%'AND `DepartmentName`" +
+                " LIKE '%" + searchComboBox2.Text + "%'AND " +
+                "`QuestionnaireName` LIKE '%" + SearchComboBox3.Text 
+                + "%'", connection);
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -129,16 +174,26 @@ namespace Anketa
 
         private void StatisticsCreateColumns()
         {
-            StatisticsDataGridView.Columns.Add("TeacherName", "ФИО преподавателя");
-            StatisticsDataGridView.Columns.Add("DepartmentName", "Кафедра");
-            StatisticsDataGridView.Columns.Add("AverageValue", "Среднее значение");
+            StatisticsDataGridView.Columns.Add("TeacherName", 
+                "ФИО преподавателя");
+            StatisticsDataGridView.Columns.Add("DepartmentName",
+                "Кафедра");
+            StatisticsDataGridView.Columns.Add("AverageValue",
+                "Среднее значение");
         }
 
         private void UpdateStatisticsDataGridView()
         {
             StatisticsDataGridView.Rows.Clear();
             MySqlConnection connection = MySql.OpenConnection();
-            MySqlCommand command = new MySqlCommand($"SELECT `TeacherName`,`DepartmentName`,`AverageValue` FROM `teacher`,`departments`,`statistics` WHERE statistics.Teacher_Id = teacher.Id AND teacher.Department_Id = departments.Id AND `TeacherName` LIKE '%" + SearchTextBox3.Text + "%' AND `DepartmentName` LIKE '%" + searchComboBox4.Text + "%'", connection);
+            MySqlCommand command = new MySqlCommand($"SELECT" +
+                $" `TeacherName`,`DepartmentName`,`AverageValue`" +
+                $" FROM `teacher`,`departments`,`statistics` WHERE" +
+                $" statistics.Teacher_Id = teacher.Id AND teacher" +
+                $".Department_Id = departments.Id AND `TeacherName`" +
+                $" LIKE '%" + SearchTextBox3.Text + "%' AND " +
+                "`DepartmentName` LIKE '%" + searchComboBox4.Text
+                + "%'", connection);
 
             MySqlDataReader reader = command.ExecuteReader();
 
@@ -153,7 +208,8 @@ namespace Anketa
         }
         private void QuestionsDataGridViewCreateColumns()
         {
-            QuestionsDataGridView.Columns.Add("QuestionnaireName", "Кафедра");
+            QuestionsDataGridView.Columns.Add("QuestionnaireName",
+                "Кафедра");
             QuestionsDataGridView.Columns.Add("Question1", "Вопрос1");
             QuestionsDataGridView.Columns.Add("Question2", "Вопрос2");
             QuestionsDataGridView.Columns.Add("Question3", "Вопрос3");
@@ -168,13 +224,19 @@ namespace Anketa
         {
             QuestionsDataGridView.Rows.Clear();
             MySqlConnection connection = MySql.OpenConnection();
-            MySqlCommand command = new MySqlCommand("SELECT `QuestionnaireName`,`Question1`,`Question2`,`Question3`,`Question4`,`Question5`,`Question6`,`Question7`,`Question8`,`Question9` FROM `questionnaire` WHERE `QuestionnaireName` LIKE '%" + SearchTextBox4.Text + "%'", connection);
+            MySqlCommand command = new MySqlCommand("SELECT " +
+                "`QuestionnaireName`,`Question1`,`Question2`" +
+                ",`Question3`,`Question4`,`Question5`,`Question6`" +
+                ",`Question7`,`Question8`,`Question9` FROM " +
+                "`questionnaire` WHERE `QuestionnaireName` LIKE " +
+                "'%" + SearchTextBox4.Text + "%'", connection);
 
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                MySql.QuestionsReadSingleRow(QuestionsDataGridView, reader);
+                MySql.QuestionsReadSingleRow(QuestionsDataGridView,
+                    reader);
             }
 
             reader.Close();
@@ -194,11 +256,15 @@ namespace Anketa
             if (EditComboBox.Text != string.Empty || EditTextBox.Text != string.Empty)
             {
                 MySqlConnection connection = MySql.OpenConnection();
-                MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `teacher`" +
-                    " (`TeacherName`,`Department_Id`) VALUES (@teacherName, " +
+                MySqlCommand addCommand = new MySqlCommand($"INSERT" +
+                    $" INTO `teacher`" +
+                    " (`TeacherName`,`Department_Id`) VALUES " +
+                    "(@teacherName, " +
                     "@departmentId)", connection);
-                MySqlCommand command = new MySqlCommand($"SELECT Id FROM departments" +
-                    $" WHERE `DepartmentName` LIKE '%" + EditComboBox.Text + "%'", connection);
+                MySqlCommand command = new MySqlCommand($"SELECT Id " +
+                    $"FROM departments" +
+                    $" WHERE `DepartmentName` LIKE '%" + 
+                    EditComboBox.Text + "%'", connection);
                 MySqlDataReader reader = command.ExecuteReader();
 
                 int departmentId = 1;
@@ -209,9 +275,11 @@ namespace Anketa
 
                 reader.Close();
 
-                addCommand.Parameters.Add("@teacherName", MySqlDbType.VarChar).Value
+                addCommand.Parameters.Add("@teacherName",
+                    MySqlDbType.VarChar).Value
                     = EditTextBox.Text;
-                addCommand.Parameters.Add("@departmentId", MySqlDbType.Int32).Value
+                addCommand.Parameters.Add("@departmentId",
+                    MySqlDbType.Int32).Value
                     = departmentId;
 
                 if (addCommand.ExecuteNonQuery() == 1)
@@ -239,19 +307,28 @@ namespace Anketa
                 MySqlConnection connection = MySql.OpenConnection();
 
                 int teacherId = 0;
-                teacherId = MySql.GetTeacherId(TeacherListDataGridView.Rows[index].Cells[0].Value.ToString());
+                teacherId = MySql.GetTeacherId(TeacherListDataGridView.
+                    Rows[index].Cells[0].Value.ToString());
 
-                int departmentId = MySql.GetDepartmentsId(EditComboBox.Text);
+                int departmentId = MySql.GetDepartmentsId
+                    (EditComboBox.Text);
 
                 if (teacherId != 0)
                 {
-                    MySqlCommand command = new MySqlCommand($"DELETE FROM `answers`" +
-                        $" WHERE `Teacher_Id` LIKE '%" + teacherId + "%'", connection);
+                    MySqlCommand command = new MySqlCommand($"DELETE " +
+                        $"FROM `answers`" +
+                        $" WHERE `Teacher_Id` LIKE '%" + teacherId +
+                        "%'", connection);
                     command.ExecuteNonQuery();
-                    command = new MySqlCommand($"DELETE FROM `statistics` WHERE " +
-                        $"`Teacher_Id` LIKE '%" + teacherId + "%'", connection);
+                    command = new MySqlCommand($"DELETE FROM " +
+                        $"`statistics` WHERE " +
+                        $"`Teacher_Id` LIKE '%" + teacherId + 
+                        "%'", connection);
                     command.ExecuteNonQuery();
-                    command = new MySqlCommand($" UPDATE `teacher` SET `TeacherName` = '{EditTextBox.Text}', `Department_Id` = '{ departmentId }' WHERE Id LIKE '{teacherId}'", connection);
+                    command = new MySqlCommand($" UPDATE `teacher`" +
+                        $" SET `TeacherName` = '{EditTextBox.Text}'," +
+                        $" `Department_Id` = '{ departmentId }'" +
+                        $" WHERE Id LIKE '{teacherId}'", connection);
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Преподаватель был изменён");
@@ -277,18 +354,23 @@ namespace Anketa
             {
                 MySqlConnection connection = MySql.OpenConnection();
                 int teacherId = 0;
-                teacherId = MySql.GetTeacherId(TeacherListDataGridView.Rows[index].Cells[0].Value.ToString());
+                teacherId = MySql.GetTeacherId(TeacherListDataGridView
+                    .Rows[index].Cells[0].Value.ToString());
 
                 if (teacherId != 0)
                 {
-                    MySqlCommand command = new MySqlCommand($"DELETE FROM `answers`" +
+                    MySqlCommand command = new MySqlCommand($"DELETE " +
+                        $"FROM `answers`" +
                         $" WHERE `Teacher_Id` LIKE '%" + teacherId +
                     "%'", connection);
                     command.ExecuteNonQuery();
-                    command = new MySqlCommand($"DELETE FROM `statistics` WHERE " +
-                        $"`Teacher_Id` LIKE '%" + teacherId + "%'", connection);
+                    command = new MySqlCommand($"DELETE FROM" +
+                        $" `statistics` WHERE " +
+                        $"`Teacher_Id` LIKE '%" + teacherId + 
+                        "%'", connection);
                     command.ExecuteNonQuery();
-                    command = new MySqlCommand($"DELETE FROM `teacher` WHERE " +
+                    command = new MySqlCommand($"DELETE FROM " +
+                        $"`teacher` WHERE " +
                         $"`Id` LIKE '%" + teacherId + "%'", connection);
                     command.ExecuteNonQuery();
 
@@ -309,32 +391,46 @@ namespace Anketa
 
         private void AddRowQuestionsDataGridView()
         {
-            if (QuestionnaireEditTextBox1.Text != string.Empty || QuestionnaireEditTextBox2.Text != string.Empty || QuestionnaireEditTextBox3.Text != string.Empty || QuestionnaireEditTextBox4.Text != string.Empty || QuestionnaireEditTextBox5.Text != string.Empty || QuestionnaireEditTextBox6.Text != string.Empty || QuestionnaireEditTextBox7.Text != string.Empty || QuestionnaireEditTextBox8.Text != string.Empty || QuestionnaireEditTextBox9.Text != string.Empty || QuestionnaireEditTextBox10.Text != string.Empty)
+            if (QuestionnaireEditTextBox1.Text != string.Empty ||
+                QuestionnaireEditTextBox2.Text != string.Empty ||
+                QuestionnaireEditTextBox3.Text != string.Empty ||
+                QuestionnaireEditTextBox4.Text != string.Empty ||
+                QuestionnaireEditTextBox5.Text != string.Empty ||
+                QuestionnaireEditTextBox6.Text != string.Empty ||
+                QuestionnaireEditTextBox7.Text != string.Empty ||
+                QuestionnaireEditTextBox8.Text != string.Empty ||
+                QuestionnaireEditTextBox9.Text != string.Empty ||
+                QuestionnaireEditTextBox10.Text != string.Empty)
             {
                 MySqlConnection connection = MySql.OpenConnection();
-                MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `questionnaire`" +
-                    " (`QuestionnaireName`,`Question1`,`Question2`,`Question3`,`Question4`,`Question5`,`Question6`,`Question7`,`Question8`,`Question9`) VALUES (@QuestionnaireName, @q1,@q2,@q3,@q4,@q5,@q6,@q7,@q8,@q9)", connection);
+                MySqlCommand addCommand = new MySqlCommand($"INSERT" +
+                    $" INTO `questionnaire` (`QuestionnaireName`" +
+                    $",`Question1`,`Question2`,`Question3`," +
+                    $"`Question4`,`Question5`,`Question6`," +
+                    $"`Question7`,`Question8`,`Question9`) " +
+                    $"VALUES (@QuestionnaireName, @q1,@q2," +
+                    $"@q3,@q4,@q5,@q6,@q7,@q8,@q9)", connection);
 
                 addCommand.Parameters.Add("@QuestionnaireName", MySqlDbType.VarChar).Value
                     = QuestionnaireEditTextBox1.Text;
-                addCommand.Parameters.Add("@q1", MySqlDbType.VarChar).Value
-                    = QuestionnaireEditTextBox2.Text; 
-                addCommand.Parameters.Add("@q2", MySqlDbType.VarChar).Value
-                    = QuestionnaireEditTextBox3.Text; 
-                addCommand.Parameters.Add("@q3", MySqlDbType.VarChar).Value
-                    = QuestionnaireEditTextBox4.Text; 
-                addCommand.Parameters.Add("@q4", MySqlDbType.VarChar).Value
-                    = QuestionnaireEditTextBox5.Text; 
-                addCommand.Parameters.Add("@q5", MySqlDbType.VarChar).Value
-                    = QuestionnaireEditTextBox6.Text; 
-                addCommand.Parameters.Add("@q6", MySqlDbType.VarChar).Value
-                    = QuestionnaireEditTextBox7.Text; 
-                addCommand.Parameters.Add("@q7", MySqlDbType.VarChar).Value
-                    = QuestionnaireEditTextBox8.Text; 
-                addCommand.Parameters.Add("@q8", MySqlDbType.VarChar).Value
-                    = QuestionnaireEditTextBox9.Text; 
-                addCommand.Parameters.Add("@q9", MySqlDbType.VarChar).Value
-                    = QuestionnaireEditTextBox10.Text;
+                addCommand.Parameters.Add("@q1", MySqlDbType.VarChar)
+                    .Value = QuestionnaireEditTextBox2.Text; 
+                addCommand.Parameters.Add("@q2", MySqlDbType.VarChar)
+                    .Value = QuestionnaireEditTextBox3.Text; 
+                addCommand.Parameters.Add("@q3", MySqlDbType.VarChar)
+                    .Value = QuestionnaireEditTextBox4.Text; 
+                addCommand.Parameters.Add("@q4", MySqlDbType.VarChar)
+                    .Value = QuestionnaireEditTextBox5.Text; 
+                addCommand.Parameters.Add("@q5", MySqlDbType.VarChar)
+                    .Value = QuestionnaireEditTextBox6.Text; 
+                addCommand.Parameters.Add("@q6", MySqlDbType.VarChar)
+                    .Value = QuestionnaireEditTextBox7.Text; 
+                addCommand.Parameters.Add("@q7", MySqlDbType.VarChar)
+                    .Value = QuestionnaireEditTextBox8.Text; 
+                addCommand.Parameters.Add("@q8", MySqlDbType.VarChar)
+                    .Value = QuestionnaireEditTextBox9.Text; 
+                addCommand.Parameters.Add("@q9", MySqlDbType.VarChar)
+                    .Value = QuestionnaireEditTextBox10.Text;
 
 
                 if (addCommand.ExecuteNonQuery() == 1)
@@ -364,7 +460,30 @@ namespace Anketa
                     ;
                     MySqlConnection connection = MySql.OpenConnection();
 
-                    MySqlCommand command = new MySqlCommand($"UPDATE `questionnaire` SET `QuestionnaireName` = '{QuestionnaireEditTextBox1.Text}', `Question1` = '{QuestionnaireEditTextBox2.Text}', `Question2` = '{QuestionnaireEditTextBox3.Text}', `Question3` = '{QuestionnaireEditTextBox4.Text}', `Question4` = '{ QuestionnaireEditTextBox5.Text}', `Question5` = '{ QuestionnaireEditTextBox6.Text}', `Question6` = '{QuestionnaireEditTextBox7.Text}', `Question7` = '{QuestionnaireEditTextBox8.Text}', `Question8` = '{QuestionnaireEditTextBox9.Text}', `Question9` = '{QuestionnaireEditTextBox10.Text}' WHERE `QuestionnaireName` LIKE '%" + QuestionsDataGridView.Rows[index].Cells[0].Value.ToString() + "%'", connection);
+                    MySqlCommand command = new MySqlCommand($"UPDATE" +
+                        $" `questionnaire` SET `QuestionnaireName` " +
+                        $"= '{QuestionnaireEditTextBox1.Text}', " +
+                        $"`Question1` = '" +
+                        $"{QuestionnaireEditTextBox2.Text}', " +
+                        $"`Question2` = '" +
+                        $"{QuestionnaireEditTextBox3.Text}', " +
+                        $"`Question3` = '" +
+                        $"{QuestionnaireEditTextBox4.Text}', " +
+                        $"`Question4` = '" +
+                        $"{QuestionnaireEditTextBox5.Text}', " +
+                        $"`Question5` = '" +
+                        $"{QuestionnaireEditTextBox6.Text}', " +
+                        $"`Question6` = '" +
+                        $"{QuestionnaireEditTextBox7.Text}', " +
+                        $"`Question7` = '" +
+                        $"{QuestionnaireEditTextBox8.Text}', " +
+                        $"`Question8` = '" +
+                        $"{QuestionnaireEditTextBox9.Text}', " +
+                        $"`Question9` = " +
+                        $"'{QuestionnaireEditTextBox10.Text}' " +
+                        $"WHERE `QuestionnaireName` LIKE '%" 
+                        + QuestionsDataGridView.Rows[index].
+                        Cells[0].Value.ToString() + "%'", connection);
                     if (command.ExecuteNonQuery() == 1)
                     {
                         MessageBox.Show("Анкета была изменена");
@@ -378,7 +497,8 @@ namespace Anketa
                 }
                 else
                 {
-                    MessageBox.Show("Заполните текстбоксы выше для изменения");
+                    MessageBox.Show("Заполните текстбоксы выше для " +
+                        "изменения");
                 }
             }
             else
@@ -399,12 +519,14 @@ namespace Anketa
 
                 if (questionnaireId != 0)
                 {
-                    MySqlCommand command = new MySqlCommand($"DELETE FROM `answers`" +
-                        $" WHERE `Questionnaire_Id` LIKE '%" + questionnaireId +
-                    "%'", connection);
+                    MySqlCommand command = new MySqlCommand($"DELETE " +
+                        $"FROM `answers`" +
+                        $" WHERE `Questionnaire_Id` LIKE '%" 
+                        + questionnaireId + "%'", connection);
                     command.ExecuteNonQuery();
-                    command = new MySqlCommand($"DELETE FROM `questionnaire` WHERE " +
-                        $"`Id` LIKE '%" + questionnaireId + "%'", connection);
+                    command = new MySqlCommand($"DELETE FROM " +
+                        $"`questionnaire` WHERE `Id` LIKE '%"
+                        + questionnaireId + "%'", connection);
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Анкета была удалёна");
