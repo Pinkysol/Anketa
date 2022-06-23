@@ -253,28 +253,21 @@ namespace Anketa
 
         private void AddRowTeacherListDataGridView()
         {
+            //Если TextBox и ComboBox не пусты, выполнить алгоритм, иначе вывести сообщение
             if (EditComboBox.Text != string.Empty || EditTextBox.Text != string.Empty)
             {
+                //Открытие соединения
                 MySqlConnection connection = MySql.OpenConnection();
+
+                //Создание команды добавления с командной строкой MySql
                 MySqlCommand addCommand = new MySqlCommand($"INSERT" +
-                    $" INTO `teacher`" +
-                    " (`TeacherName`,`Department_Id`) VALUES " +
-                    "(@teacherName, " +
-                    "@departmentId)", connection);
-                MySqlCommand command = new MySqlCommand($"SELECT Id " +
-                    $"FROM departments" +
-                    $" WHERE `DepartmentName` LIKE '%" + 
-                    EditComboBox.Text + "%'", connection);
-                MySqlDataReader reader = command.ExecuteReader();
+                    $" INTO `teacher` (`TeacherName`,`Department_Id`)" +
+                    $" VALUES (@teacherName, @departmentId)", connection);
 
-                int departmentId = 1;
-                while (reader.Read())
-                {
-                    departmentId = reader.GetInt32(0);
-                }
-
-                reader.Close();
-
+                //Поиск Id выбранной кафедры, используя метод из вспомогательного класса
+                int departmentId = MySql.GetDepartmentsId(EditComboBox.Text);
+                
+                //Замена параметров на значения переменных
                 addCommand.Parameters.Add("@teacherName",
                     MySqlDbType.VarChar).Value
                     = EditTextBox.Text;
@@ -282,6 +275,7 @@ namespace Anketa
                     MySqlDbType.Int32).Value
                     = departmentId;
 
+                //Проверка выполнения команды
                 if (addCommand.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Преподаватель был добавлен");
