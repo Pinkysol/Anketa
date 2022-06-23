@@ -209,7 +209,7 @@ namespace Anketa
         private void QuestionsDataGridViewCreateColumns()
         {
             QuestionsDataGridView.Columns.Add("QuestionnaireName",
-                "Кафедра");
+                "Название анкеты");
             QuestionsDataGridView.Columns.Add("Question1", "Вопрос1");
             QuestionsDataGridView.Columns.Add("Question2", "Вопрос2");
             QuestionsDataGridView.Columns.Add("Question3", "Вопрос3");
@@ -294,31 +294,42 @@ namespace Anketa
 
         private void EditRowTeacherListDataGridView()
         {
+            //Проверка выбрана ли запись
             int index = - 1;
             index = TeacherListDataGridView.CurrentCell.RowIndex;
+            //Если запись выбрана, выполнить алгоритм, иначе вывести сообщение
             if (index != -1)
             {
+                //Открытие соединения
                 MySqlConnection connection = MySql.OpenConnection();
 
+                //Поиск Id выбранного преподавателя, используя метод из вспомогательного класса
                 int teacherId = 0;
                 teacherId = MySql.GetTeacherId(TeacherListDataGridView.
                     Rows[index].Cells[0].Value.ToString());
 
+                //Поиск Id выбранной кафедры, используя метод из вспомогательного класса
                 int departmentId = MySql.GetDepartmentsId
                     (EditComboBox.Text);
 
+                //Если преподаватель существует в базе данных,
+                //выполнить алгоритм, иначе вывести сообщение
                 if (teacherId != 0)
                 {
+                    //Создание команды удаления ответов, связанных с данным преподавателем
                     MySqlCommand command = new MySqlCommand($"DELETE " +
-                        $"FROM `answers`" +
-                        $" WHERE `Teacher_Id` LIKE '%" + teacherId +
-                        "%'", connection);
+                        $"FROM `answers` WHERE `Teacher_Id` LIKE '%"
+                        + teacherId + "%'", connection);
                     command.ExecuteNonQuery();
+
+                    //Создание команды удаления статистики, связанной с данным преподавателем
                     command = new MySqlCommand($"DELETE FROM " +
                         $"`statistics` WHERE " +
                         $"`Teacher_Id` LIKE '%" + teacherId + 
                         "%'", connection);
                     command.ExecuteNonQuery();
+
+                    //Создание команды изменения данных преподавателя
                     command = new MySqlCommand($" UPDATE `teacher`" +
                         $" SET `TeacherName` = '{EditTextBox.Text}'," +
                         $" `Department_Id` = '{ departmentId }'" +

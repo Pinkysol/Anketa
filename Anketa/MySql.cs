@@ -172,7 +172,7 @@ namespace Anketa
         }
         public static void StatisticsReadSingleRow(DataGridView dataGridView, IDataRecord record)
         {
-            dataGridView.Rows.Add(record.GetString(0), record.GetString(1), record.GetInt32(2));
+            dataGridView.Rows.Add(record.GetString(0), record.GetString(1), record.GetDouble(2));
         }
         public static void QuestionsReadSingleRow(DataGridView dataGridView, IDataRecord record)
         {
@@ -182,14 +182,13 @@ namespace Anketa
         public static void CountStatistics()
         {
             MySqlConnection connection = MySql.OpenConnection();
-            MySqlCommand command = connection.CreateCommand();
             string commandText = "SELECT `Teacher_Id`," +
                 "`Department_Id`,`Answer1`,`Answer2`,`Answer3`," +
                 "`Answer4`,`Answer5`,`Answer6`,`Answer7`,`Answer8`," +
                 "`Answer9` FROM answers, teacher WHERE answers.Teacher_Id" +
                 " = teacher.Id";
-            command.CommandText = commandText;
-            MySqlDataAdapter adapter = new MySqlDataAdapter(commandText, connection);
+            MySqlCommand command = new MySqlCommand(commandText, connection);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
             DataTable table = new DataTable();
             adapter.Fill(table);
 
