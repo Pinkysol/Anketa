@@ -437,7 +437,6 @@ namespace Anketa
                 addCommand.Parameters.Add("@q9", MySqlDbType.VarChar)
                     .Value = QuestionnaireEditTextBox10.Text;
 
-
                 if (addCommand.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Анкета была добавлена");

@@ -181,23 +181,34 @@ namespace Anketa
 
         public static void CountStatistics()
         {
+            //Открытие соединения
             MySqlConnection connection = MySql.OpenConnection();
+
+            //Создание текста команды
             string commandText = "SELECT `Teacher_Id`," +
                 "`Department_Id`,`Answer1`,`Answer2`,`Answer3`," +
                 "`Answer4`,`Answer5`,`Answer6`,`Answer7`,`Answer8`," +
                 "`Answer9` FROM answers, teacher WHERE answers.Teacher_Id" +
                 " = teacher.Id";
+
+            //Создание команды
             MySqlCommand command = new MySqlCommand(commandText, connection);
+
+            //Создание адаптера
             MySqlDataAdapter adapter = new MySqlDataAdapter(command);
             DataTable table = new DataTable();
+
+            //Заполнение таблицы адаптером
             adapter.Fill(table);
 
+            //Создание числового массива
             double[,] tableArray = new double[table.Rows.Count, 4];
 
-            List<string> row = new List<string>();
+            //Упрощение переменных x-вертикаль y-горизонталь
             int x = table.Rows.Count;
             int y = table.Columns.Count;
 
+            //Заполнение числового массива значениями из таблицы
             for (int i = 0; i < x; i++)
             {
                 tableArray[i, 3] = 0;
@@ -205,26 +216,28 @@ namespace Anketa
                 {
                     if (j >= 2)
                     {
+                        //Запись суммы ответов на вопросы
                         tableArray[i, 2] += double.Parse(table.Rows[i][j].ToString());
-
                     }
                     else
                     {
-                        row.Add(table.Rows[i][j].ToString());
+                        //Запись уникальных идентификаторов из таблицы в массив
                         tableArray[i, j] = double.Parse(table.Rows[i][j].ToString());
                     }
                     
                 }
             }
 
-            for (int i = 0; 
-                i < x; i++)
+            for (int i = 0; i < x; i++)
             {
+                //Разделить сумму на количество элементов
                 tableArray[i, 2] = Math.Round((tableArray[i, 2] / 9), 2);
             }
 
+            //Создание временного массива
             double[,] tempArray;
 
+            //найти количество повторений преподавателей и вычислить их суммы
             for (int i = 0; i < x-1; i++)
             {
                 for (int j = i + 1; j < x; j++)
@@ -269,14 +282,18 @@ namespace Anketa
             {
                 if (tableArray[i, 3] != 0)
                 {
+                    //Разделить сумму на количество повторений записей + 1
                     tableArray[i, 2] = Math.Round(tableArray[i, 2] / (tableArray[i, 3] + 1),2);
                 }
             }
 
             for (int i = 0; i < x; i++)
             {
+                //Создать команду поиска записи по Teacher_Id
                 command = new MySqlCommand("SELECT `Teacher_Id` FROM `statistics` WHERE `Teacher_Id` LIKE @TeacherId", connection);
+                //Задать значение заглушке
                 command.Parameters.Add("@TeacherId", MySqlDbType.Int32).Value = tableArray[i, 0];
+                //Создать DataReader
                 MySqlDataReader reader = command.ExecuteReader();
 
                 int teacherId = 0;
@@ -286,17 +303,22 @@ namespace Anketa
                 }
                 reader.Close();
                 Console.WriteLine(teacherId);
+                //Проверить существование записи, если записи нет в таблице, то добавить её
                 if (teacherId==0)
                 {
+                    //Создать команду добавления записи статистики
                     MySqlCommand addCommand = new MySqlCommand($"INSERT INTO `statistics` (`Teacher_Id`,`AverageValue`) VALUES (@teacher_id,@averageValue)", connection);
                     addCommand.Parameters.Add("@teacher_id", MySqlDbType.Double).Value = tableArray[i, 0];
                     addCommand.Parameters.Add("@averageValue", MySqlDbType.Double).Value = tableArray[i, 2];
+                    //Выполнить команду
                     addCommand.ExecuteNonQuery();
                 }
                 else
                 {
+                    //Создать команду обновления статистики
                     command = new MySqlCommand($"UPDATE `statistics` SET `AverageValue` = @averageValue WHERE `Teacher_Id` LIKE '%" + teacherId + "%'", connection);
                     command.Parameters.Add("@averageValue", MySqlDbType.Double).Value = tableArray[i, 2];
+                    //Выполнить команду
                     command.ExecuteNonQuery();
                 }
             }
