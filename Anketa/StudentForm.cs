@@ -10,7 +10,7 @@ namespace Anketa
         {
             InitializeComponent();
             string[] teacherNames = MySql.GetTeacherNames();
-            string[] questionnaireNames = MySql.GetQuestionNames();
+            string[] questionnaireNames = MySql.GetQuestionnaireNames();
             for (int i = 0; i < teacherNames.Length; i++)
             {
                 teacherNameСomboBox.Items.Add(teacherNames[i]);

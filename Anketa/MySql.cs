@@ -69,32 +69,12 @@ namespace Anketa
             MySql.CloseConnection(connection);
             return data;
         }
-        public static string[] GetQuestionNames()
-        {
-            MySqlConnection connection = MySql.OpenConnection();
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT `QuestionnaireName` From questionnaire";
-            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            MySqlDataReader reader = command.ExecuteReader();
-            string[] data = new string[table.Rows.Count];
-            int i = 0;
-            while (reader.Read())
-            {
-                data[i] = reader.GetString(0);
-                i++;
-            }
-            reader.Close();
-            MySql.CloseConnection(connection);
-            return data;
-        }
 
         public static string[] GetQuestionnaireNames()
         {
             MySqlConnection connection = MySql.OpenConnection();
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT `QestionnaireName` From questionnaire";
+            command.CommandText = "SELECT `QuestionnaireName` From questionnaire";
             MySqlDataAdapter adapter = new MySqlDataAdapter(command);
             DataTable table = new DataTable();
             adapter.Fill(table);
@@ -166,14 +146,17 @@ namespace Anketa
         {
             dataGridView.Rows.Add(record.GetString(0), record.GetString(1));
         }
+
         public static void TestReadSingleRow(DataGridView dataGridView, IDataRecord record)
         {
             dataGridView.Rows.Add(record.GetString(0), record.GetString(1), record.GetString(2), record.GetInt32(3), record.GetInt32(4), record.GetInt32(5), record.GetInt32(6), record.GetInt32(7), record.GetInt32(8), record.GetInt32(9), record.GetInt32(10), record.GetInt32(11), record.GetString(12));
         }
+
         public static void StatisticsReadSingleRow(DataGridView dataGridView, IDataRecord record)
         {
             dataGridView.Rows.Add(record.GetString(0), record.GetString(1), record.GetDouble(2));
         }
+
         public static void QuestionsReadSingleRow(DataGridView dataGridView, IDataRecord record)
         {
             dataGridView.Rows.Add(record.GetString(0), record.GetString(1), record.GetString(2), record.GetString(3), record.GetString(4), record.GetString(5), record.GetString(6), record.GetString(7), record.GetString(8), record.GetString(9));
@@ -302,7 +285,6 @@ namespace Anketa
                     teacherId = reader.GetInt32(0);
                 }
                 reader.Close();
-                Console.WriteLine(teacherId);
                 //Проверить существование записи, если записи нет в таблице, то добавить её
                 if (teacherId==0)
                 {

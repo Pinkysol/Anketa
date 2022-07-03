@@ -22,7 +22,7 @@ namespace Anketa
                 searchComboBox4.Items.Add(departmentNames[i]);
             }
 
-            string[] questionnaireNames = MySql.GetQuestionNames();
+            string[] questionnaireNames = MySql.GetQuestionnaireNames();
             for (int i = 0; i < questionnaireNames.Length; i++)
             {
                 SearchComboBox3.Items.Add(questionnaireNames[i]);
@@ -35,7 +35,7 @@ namespace Anketa
             MySql.CountStatistics();
             StatisticsCreateColumns();
             UpdateStatisticsDataGridView();
-            QuestionsDataGridViewCreateColumns();
+            QuestionsCreateColumns();
             UpdateQuestionsDataGridView();
         }
         
@@ -206,7 +206,8 @@ namespace Anketa
 
             MySql.CloseConnection(connection);
         }
-        private void QuestionsDataGridViewCreateColumns()
+
+        private void QuestionsCreateColumns()
         {
             QuestionsDataGridView.Columns.Add("QuestionnaireName",
                 "Название анкеты");
@@ -220,6 +221,7 @@ namespace Anketa
             QuestionsDataGridView.Columns.Add("Question8", "Вопрос8");
             QuestionsDataGridView.Columns.Add("Question9", "Вопрос9");
         }
+
         private void UpdateQuestionsDataGridView()
         {
             QuestionsDataGridView.Rows.Clear();
@@ -242,6 +244,7 @@ namespace Anketa
             reader.Close();
             MySql.CloseConnection(connection);
         }
+
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             UpdateTeacherListDataGridView();
@@ -547,11 +550,13 @@ namespace Anketa
                 MessageBox.Show("Выберите анкету для удаления");
             }
         }
+
         private void AddButton1_Click(object sender, EventArgs e)
         {
             AddRowTeacherListDataGridView();
             UpdateTeacherListDataGridView();
         }
+
         private void ChangeButton1_Click(object sender, EventArgs e)
         {
             EditRowTeacherListDataGridView();
@@ -597,6 +602,7 @@ namespace Anketa
 
             }
         }
+
         private void SearchTextBox1_TextChanged(object sender, EventArgs e)
         {
             UpdateTeacherListDataGridView();
@@ -611,6 +617,11 @@ namespace Anketa
         {
             MySql.CountStatistics();
             UpdateStatisticsDataGridView();
+        }
+
+        private void SearchTextBox4_TextChanged(object sender, EventArgs e)
+        {
+            UpdateQuestionsDataGridView();
         }
 
         private void SearchComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -631,11 +642,6 @@ namespace Anketa
         private void SearchComboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateStatisticsDataGridView();
-        }
-
-        private void SearchTextBox4_TextChanged(object sender, EventArgs e)
-        {
-            UpdateQuestionsDataGridView();
         }
 
         private void AddButton2_Click(object sender, EventArgs e)
